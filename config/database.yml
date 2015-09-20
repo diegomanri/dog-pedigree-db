@@ -13,13 +13,13 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
-  password:
   host: localhost
 
 development:
   <<: *default
-  database: dogspace_development
+  database: dogspace_dev
+  username: dogedev
+  password: theoneandonlypass
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -27,6 +27,8 @@ development:
 test:
   <<: *default
   database: dogspace_test
+  username: dogetest
+  password: theoneandonlypass
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -49,6 +51,6 @@ test:
 #
 production:
   <<: *default
-  database: dogspace_production
-  username: dogspace
-  password: <%= ENV['DOGSPACE_DATABASE_PASSWORD'] %>
+  database: dogspace_prod
+  username: <%= ENV['DOGSPACE_PROD_USER'] %>
+  password: <%= ENV['DOGSPACE_PROD_PASS'] %>
