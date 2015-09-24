@@ -62,7 +62,7 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
   # Enabling ActionMailer to use SMTP with my Gmail Account
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = {:host => "cot-cis4375-04.e.uh.edu"}
@@ -73,7 +73,6 @@ Rails.application.configure do
       authentication: :plain,
       user_name:      ENV['GMAIL_USERNAME'],
       password:       ENV['GMAIL_PASSWORD'],
-      #domain:         'cot-cis4375-04.e.uh.edu',
       enable_starttls_auto: true
   }
 
