@@ -64,6 +64,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = false
   # Enabling ActionMailer to use SMTP with my Gmail Account
+  config.action_mailer.default_url_options = {:host => "cot-cis4375-04.e.uh.edu"}
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
       address:        'smtp.gmail.com',
