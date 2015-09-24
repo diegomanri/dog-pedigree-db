@@ -26,14 +26,26 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
+    #Added mailer action here to deliver mail when successful or display error went user creation didn't work.
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        UserMailer.registration_confirmation(@user).deliver
+        format.html { redirect_to root_url, notice: 'Please confirm your email address to continue' }
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { render :new, notice: 'Something went wrong, please wait 15 minutes and try again' }
       end
+    end
+  end
+
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Welcome to Dogspace! Your email has been confirmed. Please Log In to continue"
+      redirect_to access_login_path
+    else
+      flash[:error] = "Sorry. The user does not exist"
+      redirect_to root_url
     end
   end
 
@@ -69,6 +81,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:ufname, :umname, :ulname, :uemail, :username, :password, :admin)
+      params.require(:user).permit(:ufname, :umname, :ulname, :uemail, :username, :password, :admin,
+                                   :email_confirmation, :password_confirmation)
     end
 end

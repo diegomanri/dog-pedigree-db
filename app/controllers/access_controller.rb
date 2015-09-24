@@ -18,7 +18,13 @@ class AccessController < ApplicationController
     if params[:username].present? && params[:password].present?
       found_user = User.where(:username => params[:username]).first
       if found_user
-        authorized_user = found_user.authenticate(params[:password])
+        #This nested if will check if the email_confirmed attribute is set to TRUE in order to proceed with
+        # authentication.
+        if found_user.email_confirmed
+            authorized_user = found_user.authenticate(params[:password])
+        else
+          flash.now[:error] = "Please activate your account by clicking the activation link sent to your email"
+        end
       end
     end
     if authorized_user
@@ -34,7 +40,7 @@ class AccessController < ApplicationController
   end
 
   def logout
-    # TODO: mark user as logged out
+    # mark user as logged out
     session[:user_id] = nil
     session[:username] = nil
     flash[:notice] = "Logged out"
