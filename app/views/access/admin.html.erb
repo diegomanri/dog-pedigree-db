@@ -1,10 +1,10 @@
-<% @page_title = "User Menu" %>
+<% @page_title = "Admin Menu" %>
 
 <div class="menu">
-  <h2>User Menu</h2>
+  <h2>Admin Menu</h2>
   <div class="identity">Logged in as: <%= session[:username] %></div>
   <ul>
-    <li><%= link_to("My Profile", edit_user_path(session[:user_id])) %></li>
+    <li><%= link_to("Manage Dog Owners", :controller => 'owners') %></li>
     <li><%= link_to("Logout", :action => 'logout') %></li>
   </ul>
 </div>

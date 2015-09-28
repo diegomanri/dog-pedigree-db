@@ -9,6 +9,13 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id])
   end
 
+  # Will deny access of admin functionality to non-admin users.
+  def admin_only
+    unless current_user.admin?
+      redirect_to root_url, flash: {notice: "Access denied."}
+    end
+  end
+
   private
 
   def confirm_logged_in

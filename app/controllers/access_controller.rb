@@ -1,17 +1,22 @@
 class AccessController < ApplicationController
 
   before_action :confirm_logged_in, :except => [:login, :attempt_login, :logout]
+  before_filter :admin_only, :only => :admin
 
   def index
     #Displays admin user menu
   end
 
   def authenticated
-    #Displays a regular authenticated user menu
+    #Displays a regular  user menu
   end
 
   def login
     #Displays the login form
+  end
+
+  def admin
+    #Displays the admin menu
   end
 
   def attempt_login

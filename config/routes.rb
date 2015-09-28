@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   resources :users
-  get 'access/index'
+  get 'access/authenticated'
   get 'access/login'
   get 'access/attempt_login'
   get 'access/logout'
+  get 'access/admin'
   get 'public/index'
   get 'public/registration'
   resources :users do
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
-  get 'admin', :to => "access#authenticated"
+  get 'admin', :to => "access#admin"
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

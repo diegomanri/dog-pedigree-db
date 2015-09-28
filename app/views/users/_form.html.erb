@@ -31,10 +31,16 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
-  <div class="field">
-    <%= f.label :role %><br>
-    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize, role]}) %>
-  </div>
+
+    <% if session[:user_id] %>
+        <% if @current_user.try(:admin?) %>
+            <div class="field">
+              <%= f.label :role %><br>
+              <%= f.select(:role, User.roles.keys.map {|role| [role.titleize, role]}) %>
+            </div>
+        <% end %>
+    <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

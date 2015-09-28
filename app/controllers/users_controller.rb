@@ -96,19 +96,13 @@ class UsersController < ApplicationController
 
   private
 
-    # Will deny access of admin functionality to non-admin users.
-    def admin_only
-      unless current_user.admin?
-        redirect_to root_url, flash: {notice: "Access denied."}
-      end
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    # TODO Check if the role= param can be sent be regular users to create admins.
     def user_params
       params.require(:user).permit(:ufname, :umname, :ulname, :uemail, :username, :password,
                                    :email_confirmation, :password_confirmation, :role)

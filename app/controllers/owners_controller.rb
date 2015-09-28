@@ -1,6 +1,7 @@
 class OwnersController < ApplicationController
   before_action :set_owner, only: [:show, :edit, :update, :destroy]
   before_action :confirm_logged_in
+  before_filter :admin_only, except: [:show, :edit, :update, :create]
 
   # GET /owners
   # GET /owners.json
