@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :confirm_logged_in, except: [:create, :confirm_email]
+  before_filter :admin_only, except: [:show, :edit, :update, :create]
 
   # GET /users
   # GET /users.json
@@ -10,6 +12,13 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    # Show will just display other user's profiles to admins, regular users can only see their own prof.
+    @user = User.find(params[:id])
+    unless current_user.admin?
+      unless @user == current_user
+        redirect_to root_url, flash: {notice: "Access denied."}
+      end
+    end
   end
 
   # GET /users/new
@@ -19,6 +28,12 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
+    unless current_user.admin?
+      unless @user == current_user
+        redirect_to root_url, flash: {notice: "Access denied."}
+      end
+    end
   end
 
   # POST /users
@@ -32,7 +47,7 @@ class UsersController < ApplicationController
         UserMailer.registration_confirmation(@user).deliver
         format.html { redirect_to root_url, notice: 'Please confirm your email address to continue' }
       else
-        format.html { render :new, notice: 'Something went wrong, please wait 15 minutes and try again' }
+          format.html { render 'public/registration' }
       end
     end
   end
@@ -52,8 +67,14 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
+        unless current_user.admin?
+          unless @user == current_user
+            redirect_to root_url, flash: {notice: "Access denied."}
+          end
+        end
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -74,6 +95,14 @@ class UsersController < ApplicationController
   end
 
   private
+
+    # Will deny access of admin functionality to non-admin users.
+    def admin_only
+      unless current_user.admin?
+        redirect_to root_url, flash: {notice: "Access denied."}
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
@@ -81,7 +110,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:ufname, :umname, :ulname, :uemail, :username, :password, :admin,
-                                   :email_confirmation, :password_confirmation)
+      params.require(:user).permit(:ufname, :umname, :ulname, :uemail, :username, :password,
+                                   :email_confirmation, :password_confirmation, :role)
     end
 end

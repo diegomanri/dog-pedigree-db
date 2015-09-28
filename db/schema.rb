@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923222452) do
+ActiveRecord::Schema.define(version: 20150927225641) do
 
   create_table "owners", force: :cascade do |t|
     t.string   "ofname",     limit: 255
@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 20150923222452) do
     t.string   "uemail",          limit: 100
     t.string   "username",        limit: 25
     t.string   "password_digest", limit: 255
-    t.boolean  "admin",                       default: false
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.boolean  "email_confirmed",             default: false
     t.string   "confirm_token",   limit: 255
+    t.integer  "role",            limit: 4
   end
 
 end
