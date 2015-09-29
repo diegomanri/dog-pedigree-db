@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   # Will deny access of admin functionality to non-admin users.
   def admin_only
     unless current_user.admin?
-      redirect_to root_url, flash: {notice: "Access denied."}
+      redirect_to access_authenticated_path, flash: {notice: "Access denied."}
     end
   end
 
