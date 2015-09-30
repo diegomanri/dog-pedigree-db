@@ -1,22 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Ufname:</strong>
+  <strong>First Name:</strong>
   <%= @user.ufname %>
 </p>
 
 <p>
-  <strong>Umname:</strong>
+  <strong>Middle Name:</strong>
   <%= @user.umname %>
 </p>
 
 <p>
-  <strong>Ulname:</strong>
+  <strong>Last Name</strong>
   <%= @user.ulname %>
 </p>
 
 <p>
-  <strong>Uemail:</strong>
+  <strong>Email address:</strong>
   <%= @user.uemail %>
 </p>
 
@@ -25,10 +25,5 @@
   <%= @user.username %>
 </p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Edit Profile', edit_user_path(@user) %> |
 <%= link_to 'Back', access_authenticated_path %>

@@ -37,7 +37,15 @@ class AccessController < ApplicationController
       session[:user_id] = authorized_user.id
       session[:username] = authorized_user.username
       flash[:notice] = "You are now logged in."
-      redirect_to(:action => 'authenticated')
+      # These two if statements wll check if the user has a session and if the user is an admin.
+      # If the user is an admin then it will be redirected to access/admin otherwise to access/authenticated.
+      if session[:user_id]
+        if authorized_user.try(:admin?)
+            redirect_to(:action => 'admin')
+        else
+        redirect_to(:action => 'authenticated')
+        end
+      end
     else
       flash[:notice] = "Invalid username/password combination."
       redirect_to(:action => 'login')

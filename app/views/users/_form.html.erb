@@ -2,19 +2,19 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="field">
-    <%= f.label :ufname %><br>
+    <%= f.label 'First Name' %><br>
     <%= f.text_field :ufname %>
   </div>
   <div class="field">
-    <%= f.label :umname %><br>
+    <%= f.label 'Middle Name' %><br>
     <%= f.text_field :umname %>
   </div>
   <div class="field">
-    <%= f.label :ulname %><br>
+    <%= f.label 'Last Name' %><br>
     <%= f.text_field :ulname %>
   </div>
   <div class="field">
-    <%= f.label :uemail %><br>
+    <%= f.label 'E-mail address' %><br>
     <%= f.text_field :uemail %>
   </div>
   <div class="field">
@@ -42,6 +42,6 @@
     <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Update Profile' %>
   </div>
 <% end %>

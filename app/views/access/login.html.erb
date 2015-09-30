@@ -2,7 +2,7 @@
     <p id="notice"><%= notice %></p>
 <% end %>
 
-<% @page_title = "Login Page" %>
+<% @page_title = "TSDN Login Page" %>
 
 <div class="login">
   <%= form_tag(:action => 'attempt_login') do %>
@@ -22,3 +22,5 @@
       </table>
   <% end %>
 </div>
+
+<%= link_to('Home', root_url) %>
