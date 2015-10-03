@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<% provide(:title, @user.ufname) %>
+<h1>
+  <%= gravatar_for @user %>
+  <%= @user.ufname + " " + @user.ulname %>
+</h1>
+
 <p>
   <strong>First Name:</strong>
   <%= @user.ufname %>
@@ -26,4 +32,11 @@
 </p>
 
 <%= link_to 'Edit Profile', edit_user_path(@user) %> |
-<%= link_to 'Back', access_authenticated_path %>
+<% if session[:user_id] %>
+    <% if @current_user.try(:admin?) %>
+        <%= link_to 'Users', access_admin_path %>
+    <% else %>
+        <%= link_to 'Back', access_authenticated_path %>
+    <% end %>
+<% end %>
+

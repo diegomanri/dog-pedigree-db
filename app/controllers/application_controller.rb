@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   private
 
   def confirm_logged_in

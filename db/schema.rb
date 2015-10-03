@@ -11,20 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927225641) do
-
-  create_table "owners", force: :cascade do |t|
-    t.string   "ofname",     limit: 255
-    t.string   "omname",     limit: 255
-    t.string   "olname",     limit: 255
-    t.string   "opnumber",   limit: 255
-    t.string   "oemail",     limit: 255
-    t.string   "ocity",      limit: 255
-    t.string   "ozip",       limit: 255
-    t.string   "ostate",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+ActiveRecord::Schema.define(version: 20151001230653) do
 
   create_table "users", force: :cascade do |t|
     t.string   "ufname",          limit: 50
@@ -38,6 +25,11 @@ ActiveRecord::Schema.define(version: 20150927225641) do
     t.boolean  "email_confirmed",             default: false
     t.string   "confirm_token",   limit: 255
     t.integer  "role",            limit: 4
+    t.string   "reset_digest",    limit: 255
+    t.datetime "reset_set_at"
+    t.string   "city",            limit: 255
+    t.string   "state",           limit: 255
+    t.string   "zip",             limit: 255
   end
 
 end

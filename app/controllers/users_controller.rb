@@ -105,6 +105,7 @@ class UsersController < ApplicationController
     # TODO Check if the role= param can be sent be regular users to create admins.
     def user_params
       params.require(:user).permit(:ufname, :umname, :ulname, :uemail, :username, :password,
-                                   :email_confirmation, :password_confirmation, :role)
+                                   :email_confirmation, :password_confirmation, :role, :reset_digest, :reset_set_at,
+                                   :city, :state, :zip)
     end
 end
