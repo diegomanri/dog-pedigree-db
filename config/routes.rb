@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  root 'public#index'
   resources :users
   get 'access/authenticated'
   get 'access/login'
@@ -22,7 +21,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-
+  root 'public#index'
   match ':controller(/:action(/:id))', :via => [:get, :post]
 
   # Example of regular route:

@@ -43,7 +43,7 @@ class AccessController < ApplicationController
         end
       end
     else
-      flash[:notice] = "Invalid username/password combination."
+      flash[:error] = "Invalid username/password combination."
       redirect_to(:action => 'login')
     end
   end

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :confirm_logged_in, except: [:create, :confirm_email]
-  before_filter :admin_only, except: [:show, :edit, :update, :create]
+  before_filter :admin_only, except: [:show, :edit, :update, :create, :confirm_email]
 
   # GET /users
   # GET /users.json
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to Dogspace! Your email has been confirmed. Please Log In to continue"
       redirect_to access_login_path
     else
-      flash[:error] = "Sorry. The user does not exist"
+      flash[:error] = "Your activation link has expired"
       redirect_to root_url
     end
   end

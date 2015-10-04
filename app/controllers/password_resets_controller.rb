@@ -1,10 +1,14 @@
 class PasswordResetsController < ApplicationController
   before_action :get_user, only: [:edit, :update]
-  # before_action :valid_user, only: [:edit, :update] <-- Commenting out because I can use my own validation code.
+  # before_action :valid_user, only: [:edit, :update] <- removing action for non-working method
   before_action :check_expiration, only: [:edit, :update]
 
 
   def new
+  end
+
+  def index
+    redirect_to root_url
   end
 
   def create
@@ -15,8 +19,8 @@ class PasswordResetsController < ApplicationController
       flash[:info] = "Email sent with password reset instructions"
       redirect_to root_url
     else
-      flash.now[:danger] = "Email address not found"
-      render 'new'
+      flash[:danger] = "Email sent with password reset instructions"
+      redirect_to root_url
     end
   end
 
@@ -50,9 +54,10 @@ class PasswordResetsController < ApplicationController
     @user = User.find_by(uemail: params[:uemail])
   end
 
-  # This method could be replaced by my existing code that checks users have validated their email.
+  # This method doesn't work as expected.
   # def valid_user
-  #   unless @user && @user.activated? && @user.authenticated?(:reset, params[:id])
+  #   unless @user.email_activate
+  #     flash[:danger] = "Your account has not been activated, you cannot perform a password reset"
   #     redirect_to root_url
   #   end
   # end
