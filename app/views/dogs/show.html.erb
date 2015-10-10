@@ -1,0 +1,86 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_for @dog, html: { multipart: true } do |f| %>
+    <p>
+      <label>Dog Picture</label>
+      <!-- <%= image_tag(@dog.avatar_url) if @dog.avatar? %> -->
+      <%= image_tag(@dog.avatar_url(:thumb)) if @dog.avatar? %>
+      <%= f.file_field :avatar %>
+    </p>
+
+    <p>
+      <label>
+        <%= f.check_box :remove_avatar %>
+        Remove avatar
+      </label>
+    </p>
+<% end %>
+
+
+<p>
+  <strong>Dname:</strong>
+  <%= @dog.dname %>
+</p>
+
+<p>
+  <strong>Breed:</strong>
+  <%= @dog.breed %>
+</p>
+
+<p>
+  <strong>Variety:</strong>
+  <%= @dog.variety %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @dog.dob %>
+</p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @dog.height %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @dog.weight %>
+</p>
+
+<p>
+  <strong>Pedinum:</strong>
+  <%= @dog.pedinum %>
+</p>
+
+<p>
+  <strong>Occupation:</strong>
+  <%= @dog.occupation %>
+</p>
+
+<p>
+  <strong>Workcert:</strong>
+  <%= @dog.workcert %>
+</p>
+
+<p>
+  <strong>Health:</strong>
+  <%= @dog.health %>
+</p>
+
+<p>
+  <strong>Dcomments:</strong>
+  <%= @dog.dcomments %>
+</p>
+
+<p>
+  <strong>Avatar:</strong>
+  <%= @dog.avatar %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @dog.user %>
+</p>
+
+<%= link_to 'Edit', edit_dog_path(@dog) %> |
+<%= link_to 'Back', dogs_path %>

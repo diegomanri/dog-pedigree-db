@@ -11,7 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001230653) do
+ActiveRecord::Schema.define(version: 20151009162501) do
+
+  create_table "dogs", force: :cascade do |t|
+    t.string   "dname",      limit: 255
+    t.string   "breed",      limit: 255
+    t.string   "variety",    limit: 255
+    t.date     "dob"
+    t.string   "height",     limit: 255
+    t.string   "weight",     limit: 255
+    t.string   "pedinum",    limit: 255
+    t.string   "occupation", limit: 255
+    t.string   "workcert",   limit: 255
+    t.string   "health",     limit: 255
+    t.text     "dcomments",  limit: 65535
+    t.string   "avatar",     limit: 255
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "avatar_url", limit: 255
+  end
+
+  add_index "dogs", ["dname", "user_id"], name: "index_dogs_on_dname_and_user_id", using: :btree
+  add_index "dogs", ["user_id"], name: "index_dogs_on_user_id", using: :btree
+
+  create_table "event_registrations", force: :cascade do |t|
+    t.integer  "event_id",   limit: 4
+    t.integer  "dog_id",     limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "event_registrations", ["dog_id", "event_id"], name: "index_event_registrations_on_dog_id_and_event_id", using: :btree
+  add_index "event_registrations", ["dog_id"], name: "index_event_registrations_on_dog_id", using: :btree
+  add_index "event_registrations", ["event_id"], name: "index_event_registrations_on_event_id", using: :btree
+
+  create_table "events", force: :cascade do |t|
+    t.string   "ename",        limit: 255
+    t.date     "edate"
+    t.datetime "etime"
+    t.text     "edescription", limit: 65535
+    t.string   "estateprov",   limit: 255
+    t.string   "ecity",        limit: 255
+    t.string   "ezippostal",   limit: 255
+    t.string   "ecountry",     limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "ufname",          limit: 50
@@ -32,4 +78,7 @@ ActiveRecord::Schema.define(version: 20151001230653) do
     t.string   "zip",             limit: 255
   end
 
+  add_foreign_key "dogs", "users"
+  add_foreign_key "event_registrations", "dogs"
+  add_foreign_key "event_registrations", "events"
 end

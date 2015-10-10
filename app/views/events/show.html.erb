@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ename:</strong>
+  <%= @event.ename %>
+</p>
+
+<p>
+  <strong>Edate:</strong>
+  <%= @event.edate %>
+</p>
+
+<p>
+  <strong>Etime:</strong>
+  <%= @event.etime %>
+</p>
+
+<p>
+  <strong>Edescription:</strong>
+  <%= @event.edescription %>
+</p>
+
+<p>
+  <strong>Estateprov:</strong>
+  <%= @event.estateprov %>
+</p>
+
+<p>
+  <strong>Ecity:</strong>
+  <%= @event.ecity %>
+</p>
+
+<p>
+  <strong>Ezippostal:</strong>
+  <%= @event.ezippostal %>
+</p>
+
+<p>
+  <strong>Ecountry:</strong>
+  <%= @event.ecountry %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

@@ -9,7 +9,8 @@
   <div class="identity">Logged in as: <%= session[:username] %></div>
   <ul>
     <li><%= link_to("My Profile", user_path(session[:user_id])) %></li>
-    <li><%= link_to "My Dogs", '#' %></li>
+    <li><%= link_to "My Dogs", access_dogmenu_path %></li>
+    <li><%= link_to "My Events", access_eventmenu_path %></li>
     <li><%= link_to("Logout", :action => 'logout') %></li>
   </ul>
 </div>

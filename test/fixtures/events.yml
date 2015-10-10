@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ename: MyString
+  edate: 2015-10-08
+  etime: 2015-10-08 18:14:35
+  edescription: MyText
+  estateprov: MyString
+  ecity: MyString
+  ezippostal: MyString
+  ecountry: MyString
+
+two:
+  ename: MyString
+  edate: 2015-10-08
+  etime: 2015-10-08 18:14:35
+  edescription: MyText
+  estateprov: MyString
+  ecity: MyString
+  ezippostal: MyString
+  ecountry: MyString

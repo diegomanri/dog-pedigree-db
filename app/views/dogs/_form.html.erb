@@ -1,0 +1,75 @@
+<%= form_for@dog, html: {multipart: true} do |f| %>
+  <% if @dog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dog.errors.count, "error") %> prohibited this dog from being saved:</h2>
+
+      <ul>
+      <% @dog.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="avatar">
+    <p>
+      <%= f.file_field :avatar %>
+    </p>
+  </div>
+  <div class="field">
+    <%= f.label :avatar_url, "or paste an image url" %><br>
+    <%= f.text_field :avatar_url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :dname %><br>
+    <%= f.text_field :dname %>
+  </div>
+  <div class="field">
+    <%= f.label :breed %><br>
+    <%= f.text_field :breed %>
+  </div>
+  <div class="field">
+    <%= f.label :variety %><br>
+    <%= f.text_field :variety %>
+  </div>
+  <div class="field">
+    <%= f.label :dob %><br>
+    <%= f.date_select :dob %>
+  </div>
+  <div class="field">
+    <%= f.label :height %><br>
+    <%= f.text_field :height %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :pedinum %><br>
+    <%= f.text_field :pedinum %>
+  </div>
+  <div class="field">
+    <%= f.label :occupation %><br>
+    <%= f.text_field :occupation %>
+  </div>
+  <div class="field">
+    <%= f.label :workcert %><br>
+    <%= f.text_field :workcert %>
+  </div>
+  <div class="field">
+    <%= f.label :health %><br>
+    <%= f.text_field :health %>
+  </div>
+  <div class="field">
+    <%= f.label :dcomments %><br>
+    <%= f.text_area :dcomments %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

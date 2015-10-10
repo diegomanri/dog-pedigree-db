@@ -7,6 +7,14 @@ class AccessController < ApplicationController
     #Displays a regular  user menu
   end
 
+  def dogmenu
+    #Displays the dog menu
+  end
+
+  def eventmenu
+    #Displays the event menu
+  end
+
   def login
     #Displays the login form
   end

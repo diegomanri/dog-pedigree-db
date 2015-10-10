@@ -1,0 +1,13 @@
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
+<% @page_title = "My Events" %>
+
+<div class="menu">
+  <h1>My Events</h1>
+  <ul>
+    <li><%= link_to("User Menu", access_authenticated_path) %></li>
+    <li><%= link_to "Search Events", '#' %></li>
+  </ul>
+</div>

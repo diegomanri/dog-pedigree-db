@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :dogs
   attr_accessor :reset_token
   has_secure_password
   before_create :confirmation_token

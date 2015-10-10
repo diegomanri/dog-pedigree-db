@@ -1,0 +1,13 @@
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
+<% @page_title = "My Dogs" %>
+
+<div class="menu">
+  <h1>My Dogs</h1>
+  <ul>
+    <li><%= link_to("User Menu", access_authenticated_path) %></li>
+    <li><%= link_to "Add Dog", new_dog_path %></li>
+  </ul>
+</div>

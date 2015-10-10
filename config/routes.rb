@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
+  resources :dogs
+  resources :events
   resources :users
   get 'access/authenticated'
   get 'access/login'
   get 'access/attempt_login'
   get 'access/logout'
+  get 'access/dogmenu'
+  get 'access/eventmenu'
   get 'access/admin'
   get 'public/index'
   get 'public/registration'
