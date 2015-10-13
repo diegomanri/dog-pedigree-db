@@ -83,4 +83,10 @@
 </p>
 
 <%= link_to 'Edit', edit_dog_path(@dog) %> |
-<%= link_to 'Back', dogs_path %>
+<% if session[:user_id] %>
+    <% if @current_user.try(:admin?) %>
+        <%= link_to 'Dogs', dogs_path %>
+    <% else %>
+        <%= link_to 'Back', access_dogmenu_path %>
+    <% end %>
+<% end %>

@@ -6,7 +6,7 @@
     <body>
         <h1>Hi <%= @user.ufname %></h1>
         <p>
-          Thanks for registering to The Sporting Dog Network! To confirm your registration click the URL below.
+          Thanks for registering to the Sport Dog Network! To confirm your registration click the URL below.
         </p>
         <p><%= confirm_email_user_url(@user.confirm_token) %></p>
     </body>
