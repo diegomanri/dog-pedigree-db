@@ -9,6 +9,7 @@ class AccessController < ApplicationController
 
   def dogmenu
     #Displays the dog menu
+    @dogs = current_user.dogs
   end
 
   def eventmenu

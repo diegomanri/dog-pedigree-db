@@ -11,3 +11,21 @@
     <li><%= link_to "Add Dog", new_dog_path %></li>
   </ul>
 </div>
+
+<div id="dogdisplay">
+  <table>
+    <tr>
+      <th>Dog Name</th>
+      <th>Breed</th>
+    </tr>
+    <% @dogs.each do |d| %>
+    <tr>
+      <td><%= link_to d.dname, d %></td>
+      <td><%= d.breed %></td>
+      <td><%= d.breed %></td>
+      <td><%= link_to "Edit", edit_dog_path(d) %></td>
+      <td><%= link_to "Delete", d, method: :delete %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
