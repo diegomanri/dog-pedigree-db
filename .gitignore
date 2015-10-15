@@ -17,4 +17,4 @@
 /config/application.yml
 
 # Ignore picture uploads
-/public/uploads/dog/*
+/public/uploads/*

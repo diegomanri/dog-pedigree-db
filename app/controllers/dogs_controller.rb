@@ -23,7 +23,6 @@ class DogsController < ApplicationController
 
   # GET /dogs/1/edit
   def edit
-    #@user = current_user.user_id
   end
 
   # This will be used for users to only be able to edit, update and delete their own dogs.

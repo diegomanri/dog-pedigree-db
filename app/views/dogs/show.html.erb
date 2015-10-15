@@ -1,24 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<%= form_for @dog, html: { multipart: true } do |f| %>
-    <p>
-      <label>Dog Picture</label>
-      <!-- <%= image_tag(@dog.avatar_url) if @dog.avatar? %> -->
-      <%= image_tag(@dog.avatar_url(:thumb)) if @dog.avatar? %>
-      <%= f.file_field :avatar %>
-    </p>
-
-    <p>
-      <label>
-        <%= f.check_box :remove_avatar %>
-        Remove avatar
-      </label>
-    </p>
-<% end %>
-
+<div id="dog-picture">
+    <label><h1><%= @dog.dname %>'s Picture</h1></label>
+    <%= image_tag @dog.avatar_url(:thumb) if @dog.avatar? %>
+    <div class="actions">
+    </div>
+</div>
 
 <p>
-  <strong>Dname:</strong>
+  <strong>Dog name:</strong>
   <%= @dog.dname %>
 </p>
 
@@ -33,7 +23,7 @@
 </p>
 
 <p>
-  <strong>Dob:</strong>
+  <strong>Date of Birth:</strong>
   <%= @dog.dob %>
 </p>
 
@@ -43,27 +33,27 @@
 </p>
 
 <p>
-  <strong>Weight:</strong>
+  <strong>Weight (in pounds):</strong>
   <%= @dog.weight %>
 </p>
 
 <p>
-  <strong>Pedinum:</strong>
+  <strong>Pedigree Number:</strong>
   <%= @dog.pedinum %>
 </p>
 
 <p>
-  <strong>Occupation:</strong>
+  <strong>Dog Occupation:</strong>
   <%= @dog.occupation %>
 </p>
 
 <p>
-  <strong>Workcert:</strong>
+  <strong>Work Certificate Number:</strong>
   <%= @dog.workcert %>
 </p>
 
 <p>
-  <strong>Health:</strong>
+  <strong>Health Concerns?:</strong>
   <%= @dog.health %>
 </p>
 
@@ -72,15 +62,6 @@
   <%= @dog.dcomments %>
 </p>
 
-<p>
-  <strong>Avatar:</strong>
-  <%= @dog.avatar %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @dog.user %>
-</p>
 
 <%= link_to 'Edit', edit_dog_path(@dog) %> |
 <% if session[:user_id] %>
