@@ -19,6 +19,8 @@ class UsersController < ApplicationController
         redirect_to root_url, flash: {notice: "Access denied."}
       end
     end
+    @attended_events = @user.attended_events.paginate(page: params[:page], per_page: 4)
+    @created_events = @user.created_events.paginate(page: params[:page], per_page: 4)
   end
 
   # GET /users/new

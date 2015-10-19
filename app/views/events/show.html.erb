@@ -1,37 +1,36 @@
 <p id="notice"><%= notice %></p>
 
+<% provide(:title, @event.ename) %>
 <p>
-  <strong>Ename:</strong>
-  <%= @event.ename %>
+  <strong>Event:</strong>
+  <%= @event.ename %><br>
+  <%= image_tag @event.avatar_url(:event) if @event.avatar? %>
 </p>
 
 <p>
-  <strong>Edate:</strong>
+  <strong>Event's Date:</strong>
   <%= @event.edate %>
+at
+  <%= @event.etime.to_s[-13..-8] %>
 </p>
 
 <p>
-  <strong>Etime:</strong>
-  <%= @event.etime %>
-</p>
-
-<p>
-  <strong>Edescription:</strong>
+  <strong>Description:</strong>
   <%= @event.edescription %>
 </p>
 
 <p>
-  <strong>Estateprov:</strong>
+  <strong>State/Province:</strong>
   <%= @event.estateprov %>
 </p>
 
 <p>
-  <strong>Ecity:</strong>
+  <strong>City/Town:</strong>
   <%= @event.ecity %>
 </p>
 
 <p>
-  <strong>Ezippostal:</strong>
+  <strong>Zip/Postal Code:</strong>
   <%= @event.ezippostal %>
 </p>
 
@@ -40,5 +39,42 @@
   <%= @event.ecountry %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<p>
+  Event by: <%= link_to @event.creator.ufname, user_path(@event.creator) %>
+</p>
+
+
+<% if session[:user_id] %>
+    <% if current_user == @event.creator %>
+        <div class="col-md-4 col-sm-12">
+          <%= link_to "Edit", edit_event_path(@event), class: 'btn btn-block btn-warning' %>
+        </div>
+        <br/><br/>
+
+        <div class="col-md-4 col-sm-12">
+          <%= link_to "Delete Event", @event, method: :delete, data: {confirm: true}, class: 'btn btn-block btn-danger' %>
+        </div>
+        <br/>
+    <% end %>
+
+    <% if current_user != @event.creator %>
+        <% if current_user.attended_events.include?(@event) %>
+            <div class="col-md-4 col-sm-12">
+              <%= link_to "Cancel Attendance", current_user.event_registrations.find_by(event_id: @event.id), method:
+                                                     :delete, data:{confirm: "Are you sure?"}, class: 'btn btn-block btn-danger' %>
+
+            </div>
+
+        <% else %>
+
+            <div class="col-md-4 col-sm-12">
+              <%= form_for(current_user.event_registrations.build(event_id: @event.id)) do |f| %>
+                  <%= f.hidden_field :event_id, value: @event.id %>
+                  <%= f.submit "Attend", class: 'btn btn-block btn-success', id:"attend-button" %>
+              <% end %>
+            </div>
+
+        <% end %>
+    <% end %>
+<% end %>
+

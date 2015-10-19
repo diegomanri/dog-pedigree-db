@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
   has_many :dogs, dependent: :destroy
+  #Attendees are USERS
+  has_many :created_events, class_name: Event, foreign_key: :creator_id, :dependent => :destroy
+  has_many :event_registrations, foreign_key: :attendee_id, :dependent => :destroy
+  has_many :attended_events, through: :event_registrations, source: :event
   attr_accessor :reset_token
   has_secure_password
   before_create :confirmation_token
@@ -61,6 +65,13 @@ class User < ActiveRecord::Base
     BCrypt::Password.create(string, cost: cost)
   end
 
+  def upcoming_events
+    event_registrations.where("date >= ?", DateTime.current)
+  end
+
+  def previous_events
+    event_registrations.where("date < ?", DateTime.current)
+  end
 
   private
   def confirmation_token

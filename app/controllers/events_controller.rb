@@ -5,6 +5,8 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @past_events = Event.past_events.paginate(page: params[:past_events], per_page: 5)
+    @upcoming_events = Event.upcoming_events.paginate(page: params[:upcoming_events], per_page: 5)
   end
 
   # GET /events/1
@@ -24,16 +26,14 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    #@event = Event.new(event_params)
+    @event = current_user.created_events.build(event_params)
+    if @event.save
+      flash[:success] = "You have added a new event"
+      redirect_to @event #events_path later
+    else
+      flash[:danger] = "The form contains errors"
+      render :new
     end
   end
 
@@ -67,8 +67,16 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+  def correct_user
+    if current_user != @event.creator
+      flash[:danger] = "You don't have permission to do that."
+      redirect_to access_authenticated_path
+    end
+  end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:ename, :edate, :etime, :edescription, :estateprov, :ecity, :ezippostal, :ecountry)
+      params.require(:event).permit(:ename, :edate, :etime, :edescription, :estateprov, :ecity, :ezippostal,
+                                    :ecountry, :time_zone, :avatar, :avatar_url, :creator_id)
     end
 end

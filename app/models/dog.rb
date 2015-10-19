@@ -1,6 +1,5 @@
 class Dog < ActiveRecord::Base
   belongs_to :user
-  has_many :event_registrations
   mount_uploader :avatar, AvatarUploader
   validates :user_id, presence: true
   validates :dname,
@@ -12,12 +11,6 @@ class Dog < ActiveRecord::Base
   validates :height, length: { maximum: 25 }
   validates :dcomments, length: { maximum: 500 }
   validates :health, length: { maximum: 50 }
-  # after_initialize :set_dog_user, :if => :new_record?
-
-  # This approach didn't work because you can't call a controller method in a model.
-  # def set_dog_user
-  #   self.user_id = current_user.id
-  # end
 
   # This is not working
   #todo make this callable from the view at _form.

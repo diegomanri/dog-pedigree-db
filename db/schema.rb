@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009162501) do
+ActiveRecord::Schema.define(version: 20151019225518) do
 
   create_table "dogs", force: :cascade do |t|
     t.string   "dname",      limit: 255
@@ -36,14 +36,14 @@ ActiveRecord::Schema.define(version: 20151009162501) do
   add_index "dogs", ["user_id"], name: "index_dogs_on_user_id", using: :btree
 
   create_table "event_registrations", force: :cascade do |t|
-    t.integer  "event_id",   limit: 4
-    t.integer  "dog_id",     limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "event_id",    limit: 4
+    t.integer  "attendee_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  add_index "event_registrations", ["dog_id", "event_id"], name: "index_event_registrations_on_dog_id_and_event_id", using: :btree
-  add_index "event_registrations", ["dog_id"], name: "index_event_registrations_on_dog_id", using: :btree
+  add_index "event_registrations", ["attendee_id", "event_id"], name: "index_event_registrations_on_attendee_id_and_event_id", using: :btree
+  add_index "event_registrations", ["attendee_id"], name: "index_event_registrations_on_attendee_id", using: :btree
   add_index "event_registrations", ["event_id"], name: "index_event_registrations_on_event_id", using: :btree
 
   create_table "events", force: :cascade do |t|
@@ -57,6 +57,10 @@ ActiveRecord::Schema.define(version: 20151009162501) do
     t.string   "ecountry",     limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "time_zone",    limit: 255
+    t.string   "avatar",       limit: 255
+    t.string   "avatar_url",   limit: 255
+    t.integer  "creator_id",   limit: 4
   end
 
   create_table "users", force: :cascade do |t|
@@ -79,6 +83,5 @@ ActiveRecord::Schema.define(version: 20151009162501) do
   end
 
   add_foreign_key "dogs", "users"
-  add_foreign_key "event_registrations", "dogs"
   add_foreign_key "event_registrations", "events"
 end

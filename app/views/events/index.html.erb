@@ -5,14 +5,14 @@
 <table>
   <thead>
     <tr>
-      <th>Ename</th>
-      <th>Edate</th>
-      <th>Etime</th>
-      <th>Edescription</th>
-      <th>Estateprov</th>
-      <th>Ecity</th>
-      <th>Ezippostal</th>
-      <th>Ecountry</th>
+      <th>Event Name</th>
+      <th>Date & Time</th>
+      <th>Time Zone</th>
+      <th>Description</th>
+      <th>State</th>
+      <th>city</th>
+      <th>Zip</th>
+      <th>Country</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,8 +21,8 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.ename %></td>
-        <td><%= event.edate %></td>
-        <td><%= event.etime %></td>
+        <td><%= event.etime.strftime("%d/%m/%y: %H:%M ") %></td>
+        <td><%= event.time_zone %></td>
         <td><%= event.edescription %></td>
         <td><%= event.estateprov %></td>
         <td><%= event.ecity %></td>
