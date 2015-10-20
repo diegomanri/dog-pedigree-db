@@ -9,6 +9,8 @@
   <ul>
     <li><%= link_to("User Menu", access_authenticated_path) %></li>
     <li><%= link_to "Search Events", public_event_search_path %></li>
+    <li><%= link_to "Create New Event", new_event_path %></li>
+
   </ul>
 </div>
 <p>
@@ -26,10 +28,13 @@
           <td><%= c.edate %></td>
           <td><%= c.etime %></td>
           <td><%= link_to "Edit", edit_event_path(c) %></td>
+          <td><%= link_to "Delete Event", c, method: :delete, data: {confirm: "Are you sure?"} %></td>
         </tr>
     <% end %>
   </table>
 </div>
+<p>
+  <%= will_paginate @e_created %>
 </p>
 <p><h2>Attending Events</h2></p>
 <div id="attending-events">
@@ -48,3 +53,6 @@
     <% end %>
   </table>
 </div>
+<p>
+  <%= will_paginate @e_attending %>
+</p>

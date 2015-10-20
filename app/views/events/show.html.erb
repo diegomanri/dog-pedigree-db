@@ -78,3 +78,11 @@ at
     <% end %>
 <% end %>
 
+<% if session[:user_id] %>
+    <% if @current_user.try(:admin?) %>
+        <%= link_to 'Events', events_path %>
+    <% else %>
+        <%= link_to 'My Events', access_eventmenu_path %>
+    <% end %>
+<% end %>
+

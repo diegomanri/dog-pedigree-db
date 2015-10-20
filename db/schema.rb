@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019225518) do
+ActiveRecord::Schema.define(version: 20151020195730) do
 
   create_table "dogs", force: :cascade do |t|
     t.string   "dname",      limit: 255
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20151019225518) do
   create_table "events", force: :cascade do |t|
     t.string   "ename",        limit: 255
     t.date     "edate"
-    t.datetime "etime"
+    t.time     "etime"
     t.text     "edescription", limit: 65535
     t.string   "estateprov",   limit: 255
     t.string   "ecity",        limit: 255

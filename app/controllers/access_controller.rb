@@ -14,8 +14,8 @@ class AccessController < ApplicationController
 
   def eventmenu
     #Displays the event menu
-    @e_attending = current_user.attended_events
-    @e_created = current_user.created_events
+    @e_attending = current_user.attended_events.paginate(page: params[:page], per_page: 5)
+    @e_created = current_user.created_events.paginate(page: params[:page], per_page: 5)
   end
 
   def login
