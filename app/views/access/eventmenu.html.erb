@@ -8,6 +8,43 @@
   <h1>My Events</h1>
   <ul>
     <li><%= link_to("User Menu", access_authenticated_path) %></li>
-    <li><%= link_to "Search Events", '#' %></li>
+    <li><%= link_to "Search Events", public_event_search_path %></li>
   </ul>
+</div>
+<p>
+<p><h2>Created Events</h2></p>
+<div id="created-events">
+  <table>
+    <tr>
+      <th>Event Name</th>
+      <th>Date</th>
+      <th>Time</th>
+    </tr>
+    <% @e_created.each do |c| %>
+        <tr>
+          <td><%= link_to c.ename, (c) %></td>
+          <td><%= c.edate %></td>
+          <td><%= c.etime %></td>
+          <td><%= link_to "Edit", edit_event_path(c) %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>
+</p>
+<p><h2>Attending Events</h2></p>
+<div id="attending-events">
+  <table>
+    <tr>
+      <th>Event Name</th>
+      <th>Date</th>
+      <th>Time</th>
+    </tr>
+    <% @e_attending.each do |e| %>
+        <tr>
+          <td><%= link_to e.ename, (e) %></td>
+          <td><%= e.edate %></td>
+          <td><%= e.etime %></td>
+        </tr>
+    <% end %>
+  </table>
 </div>

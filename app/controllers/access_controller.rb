@@ -14,6 +14,8 @@ class AccessController < ApplicationController
 
   def eventmenu
     #Displays the event menu
+    @e_attending = current_user.attended_events
+    @e_created = current_user.created_events
   end
 
   def login

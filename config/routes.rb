@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'access/admin'
   get 'public/index'
   get 'public/registration'
+  get 'public/event_search'
   resources :users do
     member do
       get :confirm_email

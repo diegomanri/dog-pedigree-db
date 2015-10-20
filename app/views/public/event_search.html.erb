@@ -1,0 +1,13 @@
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
+<% @page_title = "Event Search" %>
+
+<div class="menu">
+  <h1>My Events</h1>
+  <ul>
+    <li><%= link_to("Home", root_path) %></li>
+    <li><%= link_to "Back", :back %></li>
+  </ul>
+</div>
