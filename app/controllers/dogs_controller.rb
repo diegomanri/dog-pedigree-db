@@ -3,6 +3,7 @@ class DogsController < ApplicationController
   before_action :confirm_logged_in
   before_filter :admin_only, only: :index
   before_filter :dog_owner?, only: [:edit, :update, :destroy]
+  # This is my pedigree functionality
 
   # GET /dogs
   # GET /dogs.json
