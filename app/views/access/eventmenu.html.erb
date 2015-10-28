@@ -25,8 +25,8 @@
     <% @e_created.each do |c| %>
         <tr>
           <td><%= link_to c.ename, (c) %></td>
-          <td><%= c.edate %></td>
-          <td><%= c.etime %></td>
+          <td><%= c.edate.try(:strftime, ("%m/%d/%Y")) %></td>
+          <td><%= c.etime.to_s[-13..-8] %></td>
           <td><%= link_to "Edit", edit_event_path(c) %></td>
           <td><%= link_to "Delete Event", c, method: :delete, data: {confirm: "Are you sure?"} %></td>
         </tr>

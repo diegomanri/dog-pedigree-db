@@ -9,7 +9,7 @@
 
 <p>
   <strong>Event's Date:</strong>
-  <%= @event.edate %>
+  <%= @event.edate.try(:strftime, ("%m/%d/%Y")) %>
 at
   <%= @event.etime.to_s[-13..-8] %>
 </p>
@@ -35,7 +35,7 @@ at
 </p>
 
 <p>
-  <strong>Ecountry:</strong>
+  <strong>Country:</strong>
   <%= @event.ecountry %>
 </p>
 

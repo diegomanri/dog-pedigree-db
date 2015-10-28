@@ -6,8 +6,8 @@
   <thead>
     <tr>
       <th>Event Name</th>
-      <th>Date & Time</th>
-      <th>Time Zone</th>
+      <th>Date</th>
+      <th>Time</th>
       <th>Description</th>
       <th>State</th>
       <th>city</th>
@@ -21,8 +21,8 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.ename %></td>
-        <td><%= event.etime.strftime("%d/%m/%y: %H:%M ") %></td>
-        <td><%= event.time_zone %></td>
+        <td><%= event.edate.try(:strftime, ("%m/%d/%Y")) %></td>
+        <td><%= event.etime.strftime("%H:%M ") %></td>
         <td><%= event.edescription %></td>
         <td><%= event.estateprov %></td>
         <td><%= event.ecity %></td>
