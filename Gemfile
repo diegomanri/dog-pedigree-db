@@ -40,6 +40,9 @@ gem 'mini_magick'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 gem 'autoprefixer-rails'
 
+# Gem that adds FontAwesome to Rails
+gem 'font-awesome-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
