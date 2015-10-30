@@ -12,7 +12,17 @@
 </head>
 <body>
 
-<%= yield %>
+
+<%= render 'layouts/navigation1' %>
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
+<%= render 'shared/flash_error_messages' %>
+
+  <%= yield %>
+
+<%= render 'layouts/footer' %>
 
 </body>
 </html>

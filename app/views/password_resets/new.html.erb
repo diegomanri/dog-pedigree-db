@@ -1,9 +1,5 @@
-<% provide(:title, "Forgot Password") %>
+<div class="public-content">
 <h1>Forgot Password</h1>
-
-<%= render 'shared/flash_error_messages' %>
-<p id="notice"><%= notice %></p>
-
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(:password_reset, url: password_resets_path) do |f| %>
@@ -16,3 +12,4 @@
 </div>
 
 <%= link_to 'Home', root_path %>
+</div>

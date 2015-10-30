@@ -1,44 +1,3 @@
-<% if notice %>
-    <p id="notice"><%= notice %></p>
-<% end %>
-
-
-<%= render 'shared/flash_error_messages' %>
-
-
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-  <div class="container topnav">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to "Login", access_login_path, :class => "navbar-brand topnav" %>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <%=link_to 'Search Dogs', '#' %>
-        </li>
-        <li>
-          <%= link_to 'Search Events', public_event_search_path %>
-        </li>
-        <li>
-          <%= link_to 'About', '#' %>
-        </li>
-      </ul>
-    </div>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- /.container -->
-</nav>
-
-
 <!-- Header -->
 <a name="about"></a>
 <div class="intro-header">
@@ -60,7 +19,7 @@
               class="network-name">Facebook</span></a>
             </li>
             <li>
-              <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+              <a href="https://www.linkedin.com/profile/view?id=AAMAAAt1Wl0BIW2ICVJobl55A8jiZU4o02JX_3A&trk=hp-identity-name" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
             </li>
           </ul>
         </div>
@@ -69,36 +28,4 @@
 
   </div>
   <!-- /.container -->
-
 </div>
-<!-- /.intro-header -->
-
-<!-- Page Content -->
-
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <ul class="list-inline">
-          <li>
-            <%=link_to 'Home', root_path %>
-          </li>
-          <li class="footer-menu-divider">&sdot;</li>
-          <li>
-            <%=link_to 'About', '#' %>
-          </li>
-          <li class="footer-menu-divider">&sdot;</li>
-          <li>
-            <%=link_to 'Search Dogs', '#' %>
-          </li>
-          <li class="footer-menu-divider">&sdot;</li>
-          <li>
-            <%=link_to 'Search Events', '#' %>
-          </li>
-        </ul>
-        <p class="copyright text-muted small">Copyright &copy; The Sport Dog Network 2015. All Rights Reserved</p>
-      </div>
-    </div>
-  </div>
-</footer>
