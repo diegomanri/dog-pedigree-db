@@ -1,15 +1,12 @@
-<% if flash[:danger] %>
-    <div class="danger"><p><%= flash[:danger] %></p></div>
-<% end %>
-<% if flash[:notice] %>
-    <div class="notice"><p><%= flash[:notice] %></p></div>
-<% end %>
-<% if flash[:success] %>
-    <div class="success"><p><%= flash[:success] %></p></div>
-<% end %>
-<% if flash[:error] %>
-    <div class="error"><p><%= flash[:error] %></p></div>
-<% end %>
-<% if flash[:info] %>
-    <div class="info"><p><%= flash[:info] %></p></div>
-<% end %>
+<div class="col-md-6 col-md-offset-3">
+  <% flash.each do |type, msg| %>
+      <%= content_tag :div, class: "alert alert-#{type} alert-dismissable text-center", style: "margin-top:70px;" do %>
+          <%= msg %>
+          <button type="button" class="close" data-dismiss="alert"
+                  aria-hidden="true">
+            &times;
+          </button>
+      <% end %>
+  <% end %>
+
+</div>

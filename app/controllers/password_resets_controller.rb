@@ -16,10 +16,10 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = "Email sent with password reset instructions"
+      flash[:success] = "Email sent with password reset instructions"
       redirect_to root_url
     else
-      flash[:danger] = "Email sent with password reset instructions"
+      flash[:success] = "Email sent with password reset instructions"
       redirect_to root_url
     end
   end
@@ -54,18 +54,10 @@ class PasswordResetsController < ApplicationController
     @user = User.find_by(uemail: params[:uemail])
   end
 
-  # This method doesn't work as expected.
-  # def valid_user
-  #   unless @user.email_activate
-  #     flash[:danger] = "Your account has not been activated, you cannot perform a password reset"
-  #     redirect_to root_url
-  #   end
-  # end
-
   # Checks expiration of reset token.
   def check_expiration
     if @user.password_reset_expired?
-      flash[:danger] = "Password reset has expired."
+      flash[:danger] = "Password reset link has expired."
       redirect_to new_password_reset_url
     end
   end

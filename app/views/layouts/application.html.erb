@@ -14,13 +14,14 @@
 
 
 <%= render 'layouts/navigation1' %>
-<% if notice %>
-    <p id="notice"><%= notice %></p>
-<% end %>
-
-<%= render 'shared/flash_error_messages' %>
+<div class="row">
+  <div class="flash-errors">
+    <%= render 'shared/flash_error_messages' %>
+  </div>
+</div>
 
   <%= yield %>
+
 
 <%= render 'layouts/footer' %>
 

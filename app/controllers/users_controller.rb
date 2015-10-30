@@ -16,7 +16,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless current_user.admin?
       unless @user == current_user
-        redirect_to root_url, flash: {notice: "Access denied."}
+        redirect_to root_url
+        flash[:danger] = "Something went wrong"
       end
     end
     @attended_events = @user.attended_events.paginate(page: params[:page], per_page: 4)
@@ -33,7 +34,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless current_user.admin?
       unless @user == current_user
-        redirect_to root_url, flash: {notice: "Access denied."}
+        redirect_to root_url
+        flash[:danger] = "Something went wrong"
       end
     end
   end
@@ -47,7 +49,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         UserMailer.registration_confirmation(@user).deliver
-        format.html { redirect_to root_url, notice: 'Please confirm your email address to continue' }
+        format.html { redirect_to root_url }
+        flash[:info] = "Please confirm your email address to continue"
       else
           format.html { render 'public/registration' }
       end
@@ -61,7 +64,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to Dogspace! Your email has been confirmed. Please Log In to continue"
       redirect_to access_login_path
     else
-      flash[:error] = "Your activation link has expired"
+      flash[:danger] = "Your activation link has expired"
       redirect_to root_url
     end
   end
@@ -74,10 +77,11 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         unless current_user.admin?
           unless @user == current_user
-            redirect_to root_url, flash: {notice: "Access denied."}
+            redirect_to root_url
+            flash[:danger] = "Something went wrong"
           end
         end
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, info: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -91,7 +95,8 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url }
+      flash[:success] = "User was properly removed"
       format.json { head :no_content }
     end
   end

@@ -31,7 +31,7 @@ class DogsController < ApplicationController
   def dog_owner?
     unless current_user.admin?
       if current_user != @dog.user
-        flash[:error] = "You can't modify other user's dogs!"
+        flash[:danger] = "You can't modify other user's dogs!"
         redirect_to access_dogmenu_path
       end
     end
@@ -67,7 +67,8 @@ class DogsController < ApplicationController
   def update
     respond_to do |format|
       if @dog.update(dog_params)
-        format.html { redirect_to @dog, notice: 'Dog was successfully updated.' }
+        format.html { redirect_to @dog }
+        flash[:success] = "Dog was properly updated"
         format.json { render :show, status: :ok, location: @dog }
       else
         format.html { render :edit }
@@ -81,7 +82,8 @@ class DogsController < ApplicationController
   def destroy
     @dog.destroy
     respond_to do |format|
-      format.html { redirect_to dogs_url, notice: 'Dog was successfully destroyed.' }
+      format.html { redirect_to dogs_url }
+      flash[:success] = "Dog was successfully removed from the application"
       format.json { head :no_content }
     end
   end
