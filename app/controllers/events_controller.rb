@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :confirm_logged_in, except: :show
   before_filter :admin_only, only: :index
+  layout 'authenticated'#, only: [:authenticated, :dogmenu, :eventmenu, :admin]
 
   # GET /events
   # GET /events.json

@@ -2,6 +2,7 @@ class AccessController < ApplicationController
 
   before_action :confirm_logged_in, :except => [:login, :attempt_login, :logout]
   before_filter :admin_only, :only => :admin
+  layout 'authenticated', only: [:authenticated, :dogmenu, :eventmenu, :admin]
 
   def authenticated
     #Displays a regular  user menu

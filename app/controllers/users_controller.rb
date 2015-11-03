@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :confirm_logged_in, except: [:create, :confirm_email]
   before_filter :admin_only, except: [:show, :edit, :update, :create, :confirm_email]
+  layout 'authenticated'#, only: [:authenticated, :dogmenu, :eventmenu, :admin]
 
   # GET /users
   # GET /users.json
