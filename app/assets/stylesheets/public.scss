@@ -159,7 +159,6 @@ p.copyright {
   padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
   padding-bottom: 50px;
   //text-align: center;
-  //color: #f8f8f8;
   background: url(asset-path('medium2-doge-hannibal.jpg')) no-repeat center center;
   background-size: cover;
 }
@@ -233,10 +232,13 @@ p.copyright {
 {
   margin-top: 10px;
 }
-.new-account
+.new-account, #new-acct
 {
   display: block;
   margin-top: 10px;
+  font-size: 18px;
+  color: #f8f8f8;
+
 }
 //Login page CSS ends here
 
@@ -270,3 +272,34 @@ p.copyright {
   align-items: center;
 }
 //Registration page CSS ends here
+
+//Pass reco page CSS starts here
+.reco-title
+{
+  color: #e7e7e7;
+  font-size: 18px;
+  font-weight: 400;
+  display: block;
+}
+
+.reco-wall
+{
+  margin-top: 20px;
+  padding: 40px 20px 20px 20px;
+  background-color: #f7f7f7;
+  -moz-box-shadow: inset 0px 0px 10px 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0px 0px 10px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0px 0px 10px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+}
+
+.reco-button
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+//Pass reco page CSS ends here
