@@ -4,15 +4,77 @@
       <ul class="nav" id="lg-menu">
         <li class="active">
           <%= link_to root_path do %>
-              <span class="glyphicon glyphicon-list-alt"></span> Home
+              <span class="glyphicon glyphicon-home"></span> Home
           <% end %>
         </li>
 
-        <li><a href="#stories"><i class="glyphicon glyphicon-list"></i> Stories</a></li>
+        <% if current_user.admin? %>
+            <li class="active">
+              <%= link_to access_admin_path do %>
+                  <span class="glyphicon glyphicon-list-alt"></span> Admin Menu
+              <% end %>
+            </li>
+        <% end %>
 
-        <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Saved</a></li>
+        <% if session[:user_id] %>
+            <% if @current_user.try(:admin?) %>
+                <li class="active">
+                  <%= link_to users_path do %>
+                      <span class="glyphicon glyphicon-user"></span> Manage Users
+                  <% end %>
+                </li>
+            <% else %>
+                <li class="active">
+                  <%= link_to user_path(session[:user_id]) do %>
+                      <span class="glyphicon glyphicon-user"></span> My Profile
+                  <% end %>
+                </li>
+            <% end %>
+        <% end %>
 
-        <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li>
+        <% if session[:user_id] %>
+            <% if @current_user.try(:admin?) %>
+                <li class="active">
+                  <%= link_to dogs_path do %>
+                      <span class="glyphicon glyphicon-list-alt"></span> Manage Dogs
+                  <% end %>
+                </li>
+            <% else %>
+                <li class="active">
+                  <%= link_to access_dogmenu_path do %>
+                      <span class="glyphicon glyphicon-list-alt"></span> Dogs
+                  <% end %>
+                </li>
+            <% end %>
+        <% end %>
+
+        <% if session[:user_id] %>
+            <% if @current_user.try(:admin?) %>
+                <li class="active">
+                  <%= link_to events_path do %>
+                      <span class="glyphicon glyphicon-glass"></span> Manage Events
+                  <% end %>
+                </li>
+            <% else %>
+                <li class="active">
+                  <%= link_to access_eventmenu_path do %>
+                      <span class="glyphicon glyphicon-glass"></span> Events
+                  <% end %>
+                </li>
+            <% end %>
+        <% end %>
+
+        <li class="active">
+          <%= link_to '#' do %>
+              <span class="glyphicon glyphicon-envelope"></span> Messages
+          <% end %>
+        </li>
+
+        <li class="active">
+          <%= link_to access_logout_path do %>
+              <span class="glyphicon glyphicon-off"></span> Logout
+          <% end %>
+        </li>
       </ul>
 
 
