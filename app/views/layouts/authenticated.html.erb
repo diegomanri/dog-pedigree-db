@@ -17,14 +17,12 @@
             <%= render 'shared/flash_error_messages' %>
           </div>
         </div>
-        <div class="row">
-            <div class="col-sm-3">
+        <div class="row" id="super-container">
+            <div class="col-sm-3" id="nav-div">
                 <%=render 'layouts/navigation2' %>
             </div>
-            <div class="col-sm-9">
-              <div class="app-content">
+            <div class="col-sm-9" id="app-content">
                 <%= yield %>
-              </div>
             </div>
         </div>
         <%= render 'layouts/footer' %>

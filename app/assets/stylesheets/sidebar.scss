@@ -2,51 +2,71 @@
 //  font-family:Arial,sans-serif;
 //  font-size:13px;
 //}
-//#sidebar {
-//  padding:0px;
-//  padding-top:15px;
-//}
-//#sidebar, #sidebar a, #sidebar-footer a {
-//  color:#ffffff;
-//  background-color:transparent;
-//  text-shadow:0 0 2px #000000;
-//  padding-left:5px;
-//}
-//#sidebar .nav li>a:hover {
-//  background-color:#393939;
-//}
-//#sidebar-footer {
-//  background-color:#444;
-//  position:absolute;
-//  bottom:5px;
-//  padding:5px;
-//}
+#nav-div {
+  padding:0px;
+  padding-top:15px;
+}
+#nav-div, #nav-div a {
+  color:#ffffff;
+  background-color:transparent;
+  text-shadow:0 0 2px #000000;
+  padding-left:5px;
+}
+#nav-div .nav-items li a:hover {
+  background-color:#393939;
+  color:#393939;
+}
+
 
 /*
  * off canvas sidebar
  * --------------------------------------------------
  */
-@media screen and (max-width: 768px) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
 
-  .row-offcanvas-left.active {
-    left: 33%;
-  }
+#nav-div {
+  background-color: #444444;
+  //background-color: #ffffff;
 
-  .row-offcanvas-left.active .sidebar-offcanvas {
-    left: -33%;
-    position: absolute;
-    top: 0;
-    width: 33%;
-    margin-left: 5px;
-  }
-
-  #sidebar, #sidebar a, #sidebar-footer a {
-    padding-left:3px;
-  }
 }
+
+.nav-items {
+  color: #f8f8f8;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+
+  //a {
+  //  color:#ffffff;
+  //}
+  //
+  //a:hover {
+  //  color:#c1e6ff;
+  //  background-color:#393939;
+  //  text-decoration:none;
+  //}
+}
+
+//@media screen and (max-width: 768px) {
+//  .row-offcanvas {
+//    position: relative;
+//    -webkit-transition: all 0.25s ease-out;
+//    -moz-transition: all 0.25s ease-out;
+//    transition: all 0.25s ease-out;
+//  }
+//
+//  .row-offcanvas-left.active {
+//    left: 33%;
+//  }
+//
+//  .row-offcanvas-left.active .sidebar-offcanvas {
+//    left: -33%;
+//    position: absolute;
+//    top: 0;
+//    width: 33%;
+//    margin-left: 5px;
+//  }
+//
+//  #sidebar, #sidebar a, #sidebar-footer a {
+//    padding-left:3px;
+//  }
+//}
