@@ -1,15 +1,20 @@
 <!-- sidebar -->
-<div class="col-xs-2 left" id="nav2-container" role="navigation" >
   <div class="nav-items">
 
       <ul class="nav" id="lg-menu">
-        <li class="active"><%= link_to 'Home', root_path %><i class="glyphicon glyphicon-list-alt"></i></li>
+        <li class="active">
+          <%= link_to root_path do %>
+              <span class="glyphicon glyphicon-list-alt"></span> Home
+          <% end %>
+        </li>
+
         <li><a href="#stories"><i class="glyphicon glyphicon-list"></i> Stories</a></li>
+
         <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Saved</a></li>
+
         <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li>
       </ul>
 
 
   </div>
-</div>
 <!-- /sidebar -->
