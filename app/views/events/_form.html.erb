@@ -1,77 +1,57 @@
 <%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+    <% if @event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-      <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @event.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :ename, "Event Name" %><br>
+      <%= f.text_field :ename %><br>
+      <%= image_tag(@event.avatar_url(:event)) if @event.avatar? %><br>
+      <%= f.file_field :avatar %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :ename, "Event Name" %><br>
-    <%= f.text_field :ename %><br>
-    <%= image_tag(@event.avatar_url(:event)) if @event.avatar? %><br>
-    <%= f.file_field :avatar %>
-  </div>
-
-  <div class="col-sm-6">
-    <%= f.label :edate, "Event Date"%>
-    <div class="input-group">
-        <%= f.text_field :edate, class: "form-control custom-form-control datepicker" %>
-        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+    <div>
+      <%= f.label :edate, "Event Date"%>
+      <%= f.date_select :edate, order: [:month, :day, :year], start_year: Date.current.year,
+                        end_year: Date.current.year + 5 %><br>
     </div>
-    <!--
-    <%= f.date_select :edate, order: [:month, :day, :year], start_year: Date.current.year,
-                          end_year: Date.current.year + 5 %>
-     -->
-    <br>
-  </div>
 
-  <div>
-    <%= f.label :etime, "Event Time" %>
-    <%= f.time_select :etime %>
-  </div>
+    <div>
+      <%= f.label :etime, "Event Time" %>
+      <%= f.time_select :etime %>
+    </div>
 
-  <div class="field">
-    <p>
-    <%= f.label :edescription, "Description of Event" %><br>
-    <%= f.text_area :edescription %>
-    </p>
-  </div>
-  <div class="field">
-    <%= f.label :estateprov, "State or Provice" %><br>
-    <%= f.text_field :estateprov %>
-  </div>
-  <div class="field">
-    <%= f.label :ecity, "City/Town" %><br>
-    <%= f.text_field :ecity %>
-  </div>
-  <div class="field">
-    <%= f.label :ezippostal, "Postal Code" %><br>
-    <%= f.text_field :ezippostal %>
-  </div>
-  <div class="field">
-    <%= f.label :ecountry, "Country" %><br>
-    <%= f.text_field :ecountry %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <p>
+        <%= f.label :edescription, "Description of Event" %><br>
+        <%= f.text_area :edescription %>
+      </p>
+    </div>
+    <div class="field">
+      <%= f.label :estateprov, "State or Provice" %><br>
+      <%= f.text_field :estateprov %>
+    </div>
+    <div class="field">
+      <%= f.label :ecity, "City/Town" %><br>
+      <%= f.text_field :ecity %>
+    </div>
+    <div class="field">
+      <%= f.label :ezippostal, "Postal Code" %><br>
+      <%= f.text_field :ezippostal %>
+    </div>
+    <div class="field">
+      <%= f.label :ecountry, "Country" %><br>
+      <%= f.text_field :ecountry %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.datepicker').datepicker({
-            format: "dd/mm/yyyy",
-            autoclose: true
-        });
-
-        $('.timepicker').timepicker();
-
-
-    });
-</script>

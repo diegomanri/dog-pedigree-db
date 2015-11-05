@@ -6,3 +6,16 @@
   color: #f0f0f0;
   background-color: #444444;
 }
+
+.table-object-information > tbody > tr {
+  border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-object-information > tbody > tr:first-child {
+  border-top: 0;
+}
+
+
+.table-object-information > tbody > tr > td {
+  border-top: 0;
+}
