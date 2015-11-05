@@ -18,10 +18,17 @@
     <%= f.file_field :avatar %>
   </div>
 
-  <div>
+  <div class="col-sm-6">
     <%= f.label :edate, "Event Date"%>
+    <div class="input-group">
+        <%= f.text_field :edate, class: "form-control custom-form-control datepicker" %>
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+    </div>
+    <!--
     <%= f.date_select :edate, order: [:month, :day, :year], start_year: Date.current.year,
-                          end_year: Date.current.year + 5 %><br>
+                          end_year: Date.current.year + 5 %>
+     -->
+    <br>
   </div>
 
   <div>
@@ -55,3 +62,16 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            autoclose: true
+        });
+
+        $('.timepicker').timepicker();
+
+
+    });
+</script>

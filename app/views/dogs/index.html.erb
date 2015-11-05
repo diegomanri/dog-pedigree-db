@@ -2,7 +2,7 @@
 
 <h1>Listing Dogs</h1>
 
-<table>
+<table class="table table-hover table-striped">
   <thead>
     <tr>
       <th>Dog name</th>
@@ -42,7 +42,8 @@
   </tbody>
 </table>
 
-<br>
-
+<p>
+  <%= will_paginate @dogs %>
+</p>
 <%= link_to 'New Dog', new_dog_path %> |
 <%= link_to 'Admin Menu', admin_path %>

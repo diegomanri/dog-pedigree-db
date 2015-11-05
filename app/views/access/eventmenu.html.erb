@@ -16,12 +16,15 @@
 <p>
 <p><h2>Created Events</h2></p>
 <div id="created-events">
-  <table>
+  <table class="table table-hover table-striped">
+    <thead>
     <tr>
       <th>Event Name</th>
       <th>Date</th>
       <th>Time</th>
     </tr>
+    </thead>
+    <tbody>
     <% @e_created.each do |c| %>
         <tr>
           <td><%= link_to c.ename, (c) %></td>
@@ -31,6 +34,7 @@
           <td><%= link_to "Delete Event", c, method: :delete, data: {confirm: "Are you sure?"} %></td>
         </tr>
     <% end %>
+    </tbody>
   </table>
 </div>
 <p>
@@ -38,12 +42,15 @@
 </p>
 <p><h2>Attending Events</h2></p>
 <div id="attending-events">
-  <table>
+  <table class="table table-hover table-striped">
+    <thead>
     <tr>
       <th>Event Name</th>
       <th>Date</th>
       <th>Time</th>
     </tr>
+    </thead>
+    <tbody>
     <% @e_attending.each do |e| %>
         <tr>
           <td><%= link_to e.ename, (e) %></td>
@@ -51,6 +58,7 @@
           <td><%= e.etime %></td>
         </tr>
     <% end %>
+    </tbody>
   </table>
 </div>
 <p>

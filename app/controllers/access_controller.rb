@@ -11,7 +11,7 @@ class AccessController < ApplicationController
 
   def dogmenu
     #Displays the dog menu
-    @dogs = current_user.dogs
+    @dogs = current_user.dogs.paginate(page: params[:page], per_page: 15)
   end
 
   def eventmenu

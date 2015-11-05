@@ -34,7 +34,7 @@
 <%= link_to 'Edit Profile', edit_user_path(@user) %> |
 <% if session[:user_id] %>
     <% if @current_user.try(:admin?) %>
-        <%= link_to 'Users', access_admin_path %>
+        <%= link_to 'Users', users_path %>
     <% else %>
         <%= link_to 'Back', access_authenticated_path %>
     <% end %>

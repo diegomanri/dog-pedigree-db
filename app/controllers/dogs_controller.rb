@@ -8,7 +8,7 @@ class DogsController < ApplicationController
   # GET /dogs
   # GET /dogs.json
   def index
-    @dogs = Dog.all
+    @dogs = Dog.all.paginate(page: params[:page], per_page: 15)
   end
 
   # GET /dogs/1
@@ -58,7 +58,7 @@ class DogsController < ApplicationController
       flash[:success] = "Dog created!"
       redirect_to access_dogmenu_path
     else
-      render 'access/dogmenu'
+      render :new
     end
   end
 

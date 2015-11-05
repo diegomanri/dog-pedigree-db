@@ -20,6 +20,8 @@ gem 'will_paginate'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'bootstrap-datepicker-rails'
+gem 'jquery-timepicker-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

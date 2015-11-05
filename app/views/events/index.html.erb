@@ -2,7 +2,7 @@
 
 <h1>Listing Events</h1>
 
-<table>
+<table class="table table-hover table-striped">
   <thead>
     <tr>
       <th>Event Name</th>
@@ -36,7 +36,9 @@
   </tbody>
 </table>
 
-<br>
+<p>
+  <%= will_paginate @events %>
+</p>
 
 <%= link_to 'New Event', new_event_path %> |
 <%= link_to 'Admin Menu', admin_path %>

@@ -16,18 +16,27 @@
 </div>
 
 <div id="dogdisplay">
-  <table>
-    <tr>
-      <th>Dog Name</th>
-      <th>Breed</th>
-    </tr>
-    <% @dogs.each do |d| %>
-    <tr>
-      <td><%= link_to d.dname, d %></td>
-      <td><%= d.breed %></td>
-      <td><%= link_to "Edit", edit_dog_path(d) %></td>
-      <td><%= link_to "Delete", d, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
+  <table class="table table-hover table-striped">
+    <thead>
+        <tr>
+          <th>Dog Name</th>
+          <th>Breed</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @dogs.each do |d| %>
+            <tr>
+              <td><%= link_to d.dname, d %></td>
+              <td><%= d.breed %></td>
+              <td><%= link_to "Edit", edit_dog_path(d) %></td>
+              <td><%= link_to "Delete", d, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+    </tbody>
   </table>
+
+  <p>
+    <%= will_paginate @dogs %>
+  </p>
 </div>

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.all.paginate(page: params[:page], per_page: 15)
   end
 
   # GET /users/1
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
         format.html { redirect_to root_url }
         flash[:info] = "Please confirm your email address to continue"
       else
-          format.html { render 'public/registration' }
+        format.html { render 'public/registration' }
       end
     end
   end
