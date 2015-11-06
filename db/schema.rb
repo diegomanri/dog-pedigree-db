@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020195730) do
+ActiveRecord::Schema.define(version: 20151106030627) do
 
   create_table "dogs", force: :cascade do |t|
     t.string   "dname",      limit: 255
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20151020195730) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.string   "avatar_url", limit: 255
+    t.string   "sex",        limit: 255
   end
 
   add_index "dogs", ["dname", "user_id"], name: "index_dogs_on_dname_and_user_id", using: :btree
@@ -63,6 +64,16 @@ ActiveRecord::Schema.define(version: 20151020195730) do
     t.integer  "creator_id",   limit: 4
   end
 
+  create_table "pedigrees", force: :cascade do |t|
+    t.integer "dog_id",        limit: 4
+    t.integer "relative_id",   limit: 4
+    t.string  "relation_name", limit: 255, null: false
+  end
+
+  add_index "pedigrees", ["dog_id", "relative_id", "relation_name"], name: "index_pedigrees_on_dog_id_and_relative_id_and_relation_name", using: :btree
+  add_index "pedigrees", ["dog_id"], name: "index_pedigrees_on_dog_id", using: :btree
+  add_index "pedigrees", ["relative_id"], name: "index_pedigrees_on_relative_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "ufname",          limit: 50
     t.string   "umname",          limit: 20
@@ -84,4 +95,5 @@ ActiveRecord::Schema.define(version: 20151020195730) do
 
   add_foreign_key "dogs", "users"
   add_foreign_key "event_registrations", "events"
+  add_foreign_key "pedigrees", "dogs"
 end
