@@ -14,7 +14,7 @@ class DogsController < ApplicationController
   # GET /dogs/1
   # GET /dogs/1.json
   def show
-
+    @dogs = current_user.dogs
   end
 
   # GET /dogs/new

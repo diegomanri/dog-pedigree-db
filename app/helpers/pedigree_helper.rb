@@ -1,0 +1,2 @@
+module PedigreeHelper
+end
