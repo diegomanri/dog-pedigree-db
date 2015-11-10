@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106030627) do
+ActiveRecord::Schema.define(version: 20151109205639) do
 
   create_table "dogs", force: :cascade do |t|
     t.string   "dname",      limit: 255
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20151106030627) do
   create_table "pedigrees", force: :cascade do |t|
     t.integer "dog_id",        limit: 4
     t.integer "relative_id",   limit: 4
-    t.string  "relation_name", limit: 255, null: false
+    t.string  "relation_name", limit: 255, default: "Sibling", null: false
   end
 
   add_index "pedigrees", ["dog_id", "relative_id", "relation_name"], name: "index_pedigrees_on_dog_id_and_relative_id_and_relation_name", using: :btree

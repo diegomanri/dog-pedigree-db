@@ -81,7 +81,7 @@
                   <% end %>
                 </ul>
                 <h4>Add this dog as your dog's relative: </h4>
-                <%= form_for(Pedigree.new, url: new_pedigree_path) do |p| %>
+                <%= form_for(Pedigree.create, url: new_pedigree_path) do |p| %>
                  Select your dog:
                   <%= p.collection_select(:dog_id, @dogs,:id, :dname, :prompt => "Select your dog") %>
                   <br>
