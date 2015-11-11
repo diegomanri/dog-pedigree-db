@@ -1,8 +1,15 @@
 class PedigreeController < ApplicationController
+
+end
+  def new
+    @pedigree = Pedigree.new
+  end
+
   def create
     @dog = Dog.find(params[:dog_id])
     #@pedigree = pedigrees.build(dog_id: @dog.id, relative_id: @dog.id, relation_name: :string)
-    @pedigree = @dog.build_pedigree(pedigree_params)
+    @pedigree = Pedigree.build(pedigree_params)
+    @pedigree.relative_id = @dog
     if @pedigree.save
       flash[:success] = "Dog relative added."
       redirect_to access_dogmenu_path
@@ -10,7 +17,6 @@ class PedigreeController < ApplicationController
       flash[:danger] = "Unable to add this dog as relative"
       redirect_to access_dogmenu_path
     end
-  end
 
   def destroy
     @pedigree = @dog.pedigrees.find(params[:id])

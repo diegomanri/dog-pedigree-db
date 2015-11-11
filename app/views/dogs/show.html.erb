@@ -81,16 +81,7 @@
                   <% end %>
                 </ul>
                 <h4>Add this dog as your dog's relative: </h4>
-                <%= form_for(Pedigree.create, url: new_pedigree_path) do |p| %>
-                 Select your dog:
-                  <%= p.collection_select(:dog_id, @dogs,:id, :dname, :prompt => "Select your dog") %>
-                  <br>
-                 Select your dog relation to the dog from this profile:
-                  <%= select_tag(:relation_id, options_for_select([['Sibling', 1], ['Parent', 2], ['Grandparent', 3],
-                                   ['Great-grandparent', 4], ['Child', 5], ['Grandchild', 6], ['Great-grandchild', 7]])) %>
-                  <br>
-                <%= p.submit 'Add Relation' %>
-                <% end %>
+                <%= render '/pedigrees/form' %>>
               </div>
               <!-- /.relatives -->
             </div>
