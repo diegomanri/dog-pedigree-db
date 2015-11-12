@@ -70,7 +70,7 @@
                     </tr>
                   </tbody>
                 </table>
-
+                <% if session[:user_id] %>
                 <h3>Relatives: </h3>
                 <ul>
                   <% for pedigree in @dog.pedigrees %>
@@ -82,6 +82,7 @@
                 </ul>
                 <h4>Add this dog as your dog's relative: </h4>
                 <%= render 'pedigrees/form' %>
+                <% end %>
               </div>
               <!-- /.relatives -->
             </div>
