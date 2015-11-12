@@ -15,6 +15,7 @@ class DogsController < ApplicationController
   # GET /dogs/1.json
   def show
     @dogs = current_user.dogs
+    @pedigree = Pedigree.new
   end
 
   # GET /dogs/new

@@ -1,0 +1,11 @@
+<%= form_for(@pedigree, url: "/pedigrees", html: {method: :post}) do |d| %>
+    Select your dog:
+    <%= d.collection_select(:dog_id, @dogs,:id, :dname, :prompt => "Select your dog") %>
+    <br>
+    <%= hidden_field_tag(:relation_id, @dog.id) %>
+    Select your dog relation to the dog from this profile:
+    <%= select_tag(:relation_name, options_for_select([['Sibling'], ['Parent'], ['Grandparent'],
+                                                       ['Great-grandparent'], ['Child'], ['Grandchild'], ['Great-grandchild']])) %>
+    <br>
+    <%= d.submit 'Add Relation' %>
+<% end %>
