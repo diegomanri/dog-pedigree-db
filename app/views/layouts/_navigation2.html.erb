@@ -8,12 +8,14 @@
           <% end %>
         </li>
 
-        <% if current_user.admin? %>
-            <li class="active">
-              <%= link_to access_admin_path do %>
-                  <span class="glyphicon glyphicon-list-alt"></span> Admin Menu
-              <% end %>
-            </li>
+        <% if session[:user_id] %>
+          <% if current_user.admin? %>
+              <li class="active">
+                <%= link_to access_admin_path do %>
+                    <span class="glyphicon glyphicon-list-alt"></span> Admin Menu
+                <% end %>
+              </li>
+          <% end %>
         <% end %>
 
         <% if session[:user_id] %>
@@ -64,17 +66,19 @@
             <% end %>
         <% end %>
 
-        <li class="active">
-          <%= link_to '#' do %>
-              <span class="glyphicon glyphicon-envelope"></span> Messages
-          <% end %>
-        </li>
+        <% if session[:user_id] %>
+          <li class="active">
+            <%= link_to '#' do %>
+                <span class="glyphicon glyphicon-envelope"></span> Messages
+            <% end %>
+          </li>
 
-        <li class="active">
-          <%= link_to access_logout_path do %>
-              <span class="glyphicon glyphicon-off"></span> Logout
-          <% end %>
-        </li>
+          <li class="active">
+            <%= link_to access_logout_path do %>
+                <span class="glyphicon glyphicon-off"></span> Logout
+            <% end %>
+          </li>
+        <% end %>
       </ul>
 
 

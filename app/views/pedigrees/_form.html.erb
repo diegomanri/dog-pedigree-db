@@ -1,0 +1,14 @@
+<%= form_for(@pedigree, url: pedigrees_path, html: {method: :post}) do |d| %>
+    Select your dog:
+
+    <% user_dogs_array = current_user.dogs.map {|dogi| [dogi.dname, dogi.id]} %>
+    <%= select_tag(:dog_id, options_for_select(user_dogs_array)) %>
+    <br>
+
+    <%= hidden_field_tag(:relative_id, @dog.id) %>
+    Select your dog relation to the dog from this profile:
+    <%= select_tag(:relation_name, options_for_select([['Sibling'], ['Parent'], ['Grandparent'],
+                                                       ['Great-grandparent'], ['Child'], ['Grandchild'], ['Great-grandchild']])) %>
+    <br>
+    <%= d.submit 'Add Relation' %>
+<% end %>

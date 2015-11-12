@@ -13,7 +13,6 @@
 
   <div class="avatar">
     <p>
-      <label><h2><%= f.label :dname %>'s picture</h2></label>
       <%= image_tag(@dog.avatar_url(:thumb)) if @dog.avatar? %><br>
       <%= f.file_field :avatar %>
     </p>

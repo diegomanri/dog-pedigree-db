@@ -11,64 +11,80 @@
             <div class="col-md-3 col-md-offset-0">
               <%= image_tag @dog.avatar_url(:thumb) if @dog.avatar? %>
             </div>
-            <table class="table table-object-information">
-              <tbody>
-                <tr>
-                  <td>Dog Name: </td>
-                  <td><%= @dog.dname %></td>
-                </tr>
+              <div class="relatives">
+                <table class="table table-object-information">
+                  <tbody>
+                    <tr>
+                      <td>Dog Name: </td>
+                      <td><%= @dog.dname %></td>
+                    </tr>
 
-                <tr>
-                  <td>Breed: </td>
-                  <td><%= @dog.breed %></td>
-                </tr>
+                    <tr>
+                      <td>Breed: </td>
+                      <td><%= @dog.breed %></td>
+                    </tr>
 
-                <tr>
-                  <td>Variety: </td>
-                  <td><%= @dog.variety %></td>
-                </tr>
+                    <tr>
+                      <td>Variety: </td>
+                      <td><%= @dog.variety %></td>
+                    </tr>
 
-                <tr>
-                  <td>Date of Birth: </td>
-                  <td><%= @dog.dob %></td>
-                </tr>
+                    <tr>
+                      <td>Date of Birth: </td>
+                      <td><%= @dog.dob %></td>
+                    </tr>
 
-                <tr>
-                  <td>Height: </td>
-                  <td><%= @dog.height %></td>
-                </tr>
+                    <tr>
+                      <td>Height: </td>
+                      <td><%= @dog.height %></td>
+                    </tr>
 
-                <tr>
-                  <td>Weight (in pounds): </td>
-                  <td><%= @dog.weight %></td>
-                </tr>
+                    <tr>
+                      <td>Weight (in pounds): </td>
+                      <td><%= @dog.weight %></td>
+                    </tr>
 
-                <tr>
-                  <td>Pedigree Number: </td>
-                  <td><%= @dog.pedinum %></td>
-                </tr>
+                    <tr>
+                      <td>Pedigree Number: </td>
+                      <td><%= @dog.pedinum %></td>
+                    </tr>
 
-                <tr>
-                  <td>Dog Occupation: </td>
-                  <td><%= @dog.occupation %></td>
-                </tr>
+                    <tr>
+                      <td>Dog Occupation: </td>
+                      <td><%= @dog.occupation %></td>
+                    </tr>
 
-                <tr>
-                  <td>Work Certificate Number: </td>
-                  <td><%= @dog.workcert %></td>
-                </tr>
+                    <tr>
+                      <td>Work Certificate Number: </td>
+                      <td><%= @dog.workcert %></td>
+                    </tr>
 
-                <tr>
-                  <td>Health Concerns?: </td>
-                  <td><%= @dog.health %></td>
-                </tr>
+                    <tr>
+                      <td>Health Concerns?: </td>
+                      <td><%= @dog.health %></td>
+                    </tr>
 
-                <tr>
-                  <td>Comments: </td>
-                  <td><%= @dog.dcomments %></td>
-                </tr>
-              </tbody>
-            </table>
+                    <tr>
+                      <td>Comments: </td>
+                      <td><%= @dog.dcomments %></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <% if session[:user_id] %>
+                <h3>Relatives: </h3>
+                <ul>
+                  <% for pedigree in @dog.pedigrees %>
+                   <li>
+                     <%= @dog.dname %> is <%= pedigree.relative.dname %>'s <%= pedigree.relation_name %>
+                     <%= link_to "Remove", pedigree, method: :delete %>
+                   </li>
+                  <% end %>
+                </ul>
+                <h4>Add this dog as your dog's relative: </h4>
+                <%= render 'pedigrees/form' %>
+                <% end %>
+              </div>
+              <!-- /.relatives -->
             </div>
           </div>
         </div>

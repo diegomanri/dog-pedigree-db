@@ -1,6 +1,6 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
-  before_action :confirm_logged_in
+  before_action :confirm_logged_in, except: :show
   before_filter :admin_only, only: :index
   before_filter :dog_owner?, only: [:edit, :update, :destroy]
   layout 'authenticated'
@@ -14,7 +14,8 @@ class DogsController < ApplicationController
   # GET /dogs/1
   # GET /dogs/1.json
   def show
-
+    #@dogs = current_user.dogs
+    @pedigree = Pedigree.new
   end
 
   # GET /dogs/new
