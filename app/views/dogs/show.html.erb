@@ -75,13 +75,13 @@
                 <ul>
                   <% for pedigree in @dog.pedigrees %>
                    <li>
-                     <%= pedigree.relative.dname %>'s - <%= pedigree.relative.relation_name %>
+                     <%= @dog.dname %> is <%= pedigree.relative.dname %>'s <%= pedigree.relation_name %>
                      <%= link_to "Remove", pedigree, method: :delete %>
                    </li>
                   <% end %>
                 </ul>
                 <h4>Add this dog as your dog's relative: </h4>
-                <%= render :partial => '/pedigrees/form' %>
+                <%= render 'pedigrees/form' %>
               </div>
               <!-- /.relatives -->
             </div>

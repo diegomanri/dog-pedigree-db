@@ -2,13 +2,14 @@ class PedigreesController < ApplicationController
 
   def new
     @pedigree = Pedigree.new
+    @user_dogs = current_user.dogs
   end
 
   def create
-    @dog = Dog.find(params[:dog_id])
+    #@dog = Dog.find(params[:dog_id])
     #@pedigrees = pedigrees.build(dog_id: @dog.id, relative_id: @dog.id, relation_name: :string)
-    @pedigree = Pedigree.build(pedigree_params)
-    @pedigree.relative_id = @dog
+    @pedigree = Pedigree.new(pedigree_params)
+    #@pedigree.relative_id = @dog
     if @pedigree.save
       flash[:success] = "Dog relative added."
       redirect_to access_dogmenu_path
@@ -28,7 +29,7 @@ class PedigreesController < ApplicationController
   private
 
   def pedigree_params
-    params.require(:pedigrees).permit(:dog_id, :relative_id, :relation_name)
+    params.permit(:dog_id, :relative_id, :relation_name)
   end
 
 end
