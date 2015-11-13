@@ -75,7 +75,7 @@
                 <ul>
                   <% for pedigree in @dog.pedigrees %>
                    <li>
-                     <%= @dog.dname %> is <%= pedigree.relative.dname %>'s <%= pedigree.relation_name %>
+                     <%= @dog.dname %> is <%= link_to pedigree.relative.dname, pedigree.relative %>'s <%= pedigree.relation_name %>
                      <%= link_to "Remove", pedigree, method: :delete %>
                    </li>
                   <% end %>

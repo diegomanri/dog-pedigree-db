@@ -6,10 +6,7 @@ class PedigreesController < ApplicationController
   end
 
   def create
-    #@dog = Dog.find(params[:dog_id])
-    #@pedigrees = pedigrees.build(dog_id: @dog.id, relative_id: @dog.id, relation_name: :string)
     @pedigree = Pedigree.new(pedigree_params)
-    #@pedigree.relative_id = @dog
     if @pedigree.save
       flash[:success] = "Dog relative added."
       redirect_to access_dogmenu_path
@@ -20,10 +17,18 @@ class PedigreesController < ApplicationController
   end
 
   def destroy
-    @pedigree = @dog.pedigrees.find(params[:id])
-    @pedigree.destroy
-    flash[:success] = "Relative removed."
-    redirect_to access_dogmenu_path
+    pedigree = Pedigree.find(params[:id])
+    if pedigree.nil?
+      flash[:danger] = "Dog relation not found"
+    elsif pedigree.destroy
+      flash[:success] = "Relative Removed"
+      respond_to do |format|
+        format.html { redirect_to access_dogmenu_path }
+      end
+    else
+      flash[:danger] = "We could not get the relation"
+      redirect_to access_dogmenu_path
+    end
   end
 
   private
