@@ -1,88 +1,97 @@
-<p id="notice"><%= notice %></p>
+<div class="container" style="
+    border-radius: 71px 10px 10px 10px;
+    -moz-border-radius: 71px 10px 10px 10px;
+    -webkit-border-radius: 71px 10px 10px 10px;
+    -webkit-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    border: 0px solid #000000;
+    background-color: white;
+    ">
+  <section style="padding-bottom: 50px; padding-top: 30px; padding-left: 15px; padding-right: 15px;">
+    <div class="row">
+      <div class="col-md-5">
+        <% provide(:title, @event.ename) %>
+          <h2><%= @event.ename %></h2>
+          <%= image_tag @event.avatar_url(:event) if @event.avatar? %>
 
-<% provide(:title, @event.ename) %>
-<p>
-  <strong>Event:</strong>
-  <%= @event.ename %><br>
-  <%= image_tag @event.avatar_url(:event) if @event.avatar? %>
-</p>
-
-<p>
-  <strong>Event's Date:</strong>
-  <%= @event.edate.try(:strftime, ("%m/%d/%Y")) %>
-at
-  <%= @event.etime.to_s[-13..-8] %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @event.edescription %>
-</p>
-
-<p>
-  <strong>State/Province:</strong>
-  <%= @event.estateprov %>
-</p>
-
-<p>
-  <strong>City/Town:</strong>
-  <%= @event.ecity %>
-</p>
-
-<p>
-  <strong>Zip/Postal Code:</strong>
-  <%= @event.ezippostal %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @event.ecountry %>
-</p>
-
-<p>
-  Event by: <%= link_to @event.creator.ufname, user_path(@event.creator) %>
-</p>
-
-
-<% if session[:user_id] %>
-    <% if current_user == @event.creator %>
-        <div class="col-md-4 col-sm-12">
-          <%= link_to "Edit", edit_event_path(@event), class: 'btn btn-block btn-warning' %>
+        <div class="label-and-value">
+          <%= label_tag :edate, "Event's Date:", class: "form-label" %>
+          <%= @event.edate.try(:strftime, ("%m/%d/%Y")) %> @ <%= @event.etime.to_s[-13..-8] %>
         </div>
-        <br/><br/>
+      </div>
 
-        <div class="col-md-4 col-sm-12">
-          <%= link_to "Delete Event", @event, method: :delete, data: {confirm: true}, class: 'btn btn-block btn-danger' %>
+      <div class="col-md-7">
+        <div class="alert alert-info">
+          <h3>Event Details : </h3>
+          <p><%= @event.edescription %></p>
         </div>
-        <br/>
-    <% end %>
 
-    <% if current_user != @event.creator %>
-        <% if current_user.attended_events.include?(@event) %>
-            <div class="col-md-4 col-sm-12">
-              <%= link_to "Cancel Attendance", current_user.event_registrations.find_by(event_id: @event.id), method:
-                                                     :delete, data:{confirm: "Are you sure?"}, class: 'btn btn-block btn-danger' %>
+        <div class="form-group col-md-8">
+          <div class="label-and-value">
+            <%= label_tag :estateprov, "State/Province: ", class: "form-label" %>
+            <%= @event.estateprov %>
+          </div>
 
-            </div>
+          <div class="label-and-value">
+            <%= label_tag :ecity, "City/Town: ", class: "form-label" %>
+            <%= @event.ecity %>
+          </div>
 
-        <% else %>
+          <div class="label-and-value">
+            <%= label_tag :ezippostal, "Zip/Postal Code: ", class: "form-label" %>
+            <%= @event.ezippostal %>
+          </div>
 
-            <div class="col-md-4 col-sm-12">
-              <%= form_for(current_user.event_registrations.build(event_id: @event.id)) do |f| %>
-                  <%= f.hidden_field :event_id, value: @event.id %>
-                  <%= f.submit "Attend", class: 'btn btn-block btn-success', id:"attend-button" %>
+          <div class="label-and-value">
+            <%= label_tag :ecity, "City/Town: ", class: "form-label" %>
+            <%= @event.ecity %>
+          </div>
+
+          <div class="label-and-value">
+            <%= label_tag :ecountry, "Country: ", class: "form-label" %>
+            <%= @event.ecountry %>
+          </div>
+
+          <p>
+            Event by: <%= link_to @event.creator.ufname, user_path(@event.creator) %>
+          </p>
+
+          <% if session[:user_id] %>
+              <% if current_user == @event.creator %>
+                  <div class="col-md-4 col-sm-12">
+                    <%= link_to "Edit", edit_event_path(@event), class: 'btn btn-block btn-warning' %>
+                  </div>
+
+                  <div class="col-md-4 col-sm-12">
+                    <%= link_to "Delete Event", @event, method: :delete, data: {confirm: true}, class: 'btn btn-block btn-danger' %>
+                  </div>
               <% end %>
-            </div>
 
-        <% end %>
-    <% end %>
-<% end %>
-<br>
-<% if session[:user_id] %>
-    <% if @current_user.try(:admin?) %>
-        <%= link_to 'Events', events_path %>
-    <% else %>
-        <%= link_to 'My Events', access_eventmenu_path %>
-    <% end %>
-<% end %>
+              <% if current_user != @event.creator %>
+                  <% if current_user.attended_events.include?(@event) %>
+                      <div class="col-md-4 col-sm-12">
+                        <%= link_to "Cancel Attendance", current_user.event_registrations.find_by(event_id: @event.id), method:
+                                                               :delete, data:{confirm: "Are you sure?"}, class: 'btn btn-block btn-danger' %>
+                      </div>
 
+                  <% else %>
+
+                      <div class="col-md-4 col-sm-12">
+                        <%= form_for(current_user.event_registrations.build(event_id: @event.id)) do |f| %>
+                            <%= f.hidden_field :event_id, value: @event.id %>
+                            <%= f.submit "Attend", class: 'btn btn-block btn-success', id:"attend-button" %>
+                        <% end %>
+                      </div>
+
+                  <% end %>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- SECTION END -->
+</div>
+<!-- /.container -->

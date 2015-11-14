@@ -167,7 +167,7 @@ p.copyright {
   padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
   padding-bottom: 50px;
   //text-align: center;
-  background: url(asset-path('medium2-doge-hannibal.jpg')) no-repeat center center;
+  //background: url(asset-path('medium2-doge-hannibal.jpg')) no-repeat center center;
   background-size: cover;
 }
 
@@ -311,3 +311,7 @@ p.copyright {
   align-items: center;
 }
 //Pass reco page CSS ends here
+
+.form-label{
+  font-size: 17px;
+}

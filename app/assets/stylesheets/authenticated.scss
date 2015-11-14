@@ -2,9 +2,19 @@
   padding-top: 50px;
 }
 
+th {
+  background-color: #747171;
+  color: #f0f0f0;
+  letter-spacing: 2px;
+  font-weight: bolder;
+}
+
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   color: #f0f0f0;
   background-color: #444444;
+  a {
+    color: #b9cddd;
+  }
 }
 
 .table-object-information > tbody > tr {
@@ -18,4 +28,11 @@
 
 .table-object-information > tbody > tr > td {
   border-top: 0;
+}
+
+
+//Relatives form within dog profiles
+.select-relation, .select-dog {
+  display: block;
+  margin: 3px 0;
 }

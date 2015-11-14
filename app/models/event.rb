@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
   validate :event_date_check
   validate :event_time_check
   validates_presence_of :edescription
+  validates_presence_of :ename
 
   default_scope -> {order('edate asc')}
   scope :upcoming_events, ->  { where('edate > ?', Date.today)}

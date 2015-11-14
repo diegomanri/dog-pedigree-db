@@ -1,57 +1,88 @@
-<%= form_for(@event) do |f| %>
-    <% if @event.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+<div class="container col-sm-11 col-md-11 col-lg-11" style="
+border-radius: 71px 10px 10px 10px;
+    -moz-border-radius: 71px 10px 10px 10px;
+    -webkit-border-radius: 71px 10px 10px 10px;
+    -webkit-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    border: 0px solid #000000;
+    background-color: white;
+">
+  <section style="padding-bottom: 50px; padding-top: 30px; padding-left: 15px; padding-right: 15px;">
+    <div class="row">
+      <div class="col-md-12 col-sm-11 col-lg-6">
 
-          <ul>
-            <% @event.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
+        <%= form_for(@event) do |f| %>
+            <% if @event.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+                  <ul>
+                    <% @event.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
             <% end %>
-          </ul>
-        </div>
-    <% end %>
 
-    <div class="field">
-      <%= f.label :ename, "Event Name" %><br>
-      <%= f.text_field :ename %><br>
-      <%= image_tag(@event.avatar_url(:event)) if @event.avatar? %><br>
-      <%= f.file_field :avatar %>
-    </div>
+            <div class="field col-md-9">
+              <%= f.label :ename, "Event Name", class: "form-label" %><br>
+              <%= f.text_field :ename, class: "form-control" %><br>
+              <div class="center-block col-md-12" style="background-color: #f0f0f0;">
+                <%= image_tag(@event.avatar_url(:event), class: "center-block") if @event.avatar? %>
+              </div>
+                <%= f.file_field :avatar %>
+            </div>
+      </div>
 
-    <div>
-      <%= f.label :edate, "Event Date"%>
-      <%= f.date_select :edate, order: [:month, :day, :year], start_year: Date.current.year,
-                        end_year: Date.current.year + 5 %><br>
-    </div>
+      <div class="col-md-12 col-sm-11 col-lg-6" style="padding-top: 50px;">
+            <div class="form-group">
+              <%= f.label :edate, "Event Date", class: "control-label"%>
+              <%= f.date_select :edate, {order: [:month, :day, :year], start_year: Date.current.year,
+                                end_year: Date.current.year + 5}, {:class => "form-control"} %>
+            </div>
 
-    <div>
-      <%= f.label :etime, "Event Time" %>
-      <%= f.time_select :etime %>
-    </div>
+            <div class="form-group">
+              <%= f.label :etime, "Event Time", class: "form-label" %>
+              <%= f.time_select :etime, class: "form-control" %>
+            </div>
 
-    <div class="field">
-      <p>
-        <%= f.label :edescription, "Description of Event" %><br>
-        <%= f.text_area :edescription %>
-      </p>
+            <div class="form-group">
+                <%= f.label :edescription, "Description of Event", class: "form-label" %>
+                <%= f.text_area :edescription, class: "form-control", rows: 4 %>
+            </div>
+            <div class="form-group">
+              <%= f.label :estateprov, "State or Provice", class: "form-label" %>
+              <%= f.text_field :estateprov, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :ecity, "City/Town", class: "form-label" %>
+              <%= f.text_field :ecity, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :ezippostal, "Postal Code", class: "form-label" %>
+              <%= f.text_field :ezippostal, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :ecountry, "Country", class: "form-label" %>
+              <%= f.text_field :ecountry, class: "form-control" %>
+            </div>
+            <div class="actions">
+              <%= f.submit "Update Event", :class => 'btn btn-success btn-md' %>
+            </div>
+        <% end %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :estateprov, "State or Provice" %><br>
-      <%= f.text_field :estateprov %>
+    <div class="col-md-12" style="padding-bottom: 15px;">
+      <%= link_to 'Event', @event, type: "button", class: "btn btn-default btn-lg" %>
+      <% if session[:user_id] %>
+          <% if @current_user.try(:admin?) %>
+              <%= link_to 'Events', events_path, type: "button", class: "btn btn-default btn-lg" %>
+          <% else %>
+              <%= link_to 'Back', access_eventmenu_path, type: "button", class: "btn btn-default btn-lg" %>
+          <% end %>
+      <% end %>
     </div>
-    <div class="field">
-      <%= f.label :ecity, "City/Town" %><br>
-      <%= f.text_field :ecity %>
-    </div>
-    <div class="field">
-      <%= f.label :ezippostal, "Postal Code" %><br>
-      <%= f.text_field :ezippostal %>
-    </div>
-    <div class="field">
-      <%= f.label :ecountry, "Country" %><br>
-      <%= f.text_field :ecountry %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-<% end %>
+  </section>
+</div>
+

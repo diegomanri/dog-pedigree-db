@@ -55,3 +55,19 @@ h6 {
 #app-content{
   //background-color: green;
 }
+
+a:hover {
+  //background-color:#393939;
+  color:#eae7e7;
+}
+
+#event_avatar{
+  padding-top: 15px;
+}
+
+.form-footer-button{
+  font-size: 15px;
+  a:hover{
+    color:#eae7e7;
+  }
+}
