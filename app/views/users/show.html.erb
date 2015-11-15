@@ -1,6 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<% provide(:title, @user.ufname) %>
+<% provide(:title, (@user.ufname + "'s profile")) %>
 <h1>
   <%= gravatar_for @user %>
   <%= @user.ufname + " " + @user.ulname %>
