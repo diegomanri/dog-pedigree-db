@@ -1,12 +1,1 @@
-<h1>Editing Dog</h1>
-
 <%= render 'form' %>
-
-<%= link_to 'Show', @dog %> |
-<% if session[:user_id] %>
-    <% if @current_user.try(:admin?) %>
-        <%= link_to 'Dogs', dogs_path %>
-    <% else %>
-        <%= link_to 'Back', access_dogmenu_path %>
-    <% end %>
-<% end %>

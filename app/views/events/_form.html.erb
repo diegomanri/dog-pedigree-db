@@ -26,12 +26,15 @@ border-radius: 71px 10px 10px 10px;
             <% end %>
 
             <div class="field col-md-9">
+              <h1>Editing <%= @event.ename %></h1>
               <%= f.label :ename, "Event Name", class: "form-label" %><br>
               <%= f.text_field :ename, class: "form-control" %><br>
               <div class="center-block col-md-12" style="background-color: #f0f0f0;">
                 <%= image_tag(@event.avatar_url(:event), class: "center-block") if @event.avatar? %>
               </div>
+              <div class="form-label">
                 <%= f.file_field :avatar %>
+              </div>
             </div>
       </div>
 
@@ -73,6 +76,7 @@ border-radius: 71px 10px 10px 10px;
         <% end %>
       </div>
     </div>
+
     <div class="col-md-12" style="padding-bottom: 15px;">
       <%= link_to 'Event', @event, type: "button", class: "btn btn-default btn-lg" %>
       <% if session[:user_id] %>
@@ -83,6 +87,7 @@ border-radius: 71px 10px 10px 10px;
           <% end %>
       <% end %>
     </div>
+
   </section>
 </div>
 

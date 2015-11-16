@@ -4,87 +4,87 @@
     <div class="col-xs-12 toppad">
       <div class="panel">
         <div class="panel-heading">
-            <h2><%= @dog.dname %></h2>
+          <h2><%= @dog.dname %></h2>
         </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-9 col-lg-9 col-md-offset-1">
-            <div class="col-md-3 col-md-offset-0">
-              <%= image_tag @dog.avatar_url(:thumb) if @dog.avatar? %>
-            </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-9 col-lg-9 col-md-offset-1">
+              <div class="col-md-3 col-md-offset-0">
+                <%= image_tag @dog.avatar_url(:dog) if @dog.avatar? %>
+              </div>
               <div class="relatives">
                 <table class="table table-object-information">
                   <tbody>
-                    <tr>
-                      <td>Dog Name: </td>
-                      <td><%= @dog.dname %></td>
-                    </tr>
+                  <tr>
+                    <td>Dog Name: </td>
+                    <td><%= @dog.dname %></td>
+                  </tr>
 
-                    <tr>
-                      <td>Breed: </td>
-                      <td><%= @dog.breed %></td>
-                    </tr>
+                  <tr>
+                    <td>Breed: </td>
+                    <td><%= @dog.breed %></td>
+                  </tr>
 
-                    <tr>
-                      <td>Variety: </td>
-                      <td><%= @dog.variety %></td>
-                    </tr>
+                  <tr>
+                    <td>Variety: </td>
+                    <td><%= @dog.variety %></td>
+                  </tr>
 
-                    <tr>
-                      <td>Date of Birth: </td>
-                      <td><%= @dog.dob %></td>
-                    </tr>
+                  <tr>
+                    <td>Date of Birth: </td>
+                    <td><%= @dog.dob %></td>
+                  </tr>
 
-                    <tr>
-                      <td>Height: </td>
-                      <td><%= @dog.height %></td>
-                    </tr>
+                  <tr>
+                    <td>Height: </td>
+                    <td><%= @dog.height %></td>
+                  </tr>
 
-                    <tr>
-                      <td>Weight (in pounds): </td>
-                      <td><%= @dog.weight %></td>
-                    </tr>
+                  <tr>
+                    <td>Weight (in pounds): </td>
+                    <td><%= @dog.weight %></td>
+                  </tr>
 
-                    <tr>
-                      <td>Pedigree Number: </td>
-                      <td><%= @dog.pedinum %></td>
-                    </tr>
+                  <tr>
+                    <td>Pedigree Number: </td>
+                    <td><%= @dog.pedinum %></td>
+                  </tr>
 
-                    <tr>
-                      <td>Dog Occupation: </td>
-                      <td><%= @dog.occupation %></td>
-                    </tr>
+                  <tr>
+                    <td>Dog Occupation: </td>
+                    <td><%= @dog.occupation %></td>
+                  </tr>
 
-                    <tr>
-                      <td>Work Certificate Number: </td>
-                      <td><%= @dog.workcert %></td>
-                    </tr>
+                  <tr>
+                    <td>Work Certificate Number: </td>
+                    <td><%= @dog.workcert %></td>
+                  </tr>
 
-                    <tr>
-                      <td>Health Concerns?: </td>
-                      <td><%= @dog.health %></td>
-                    </tr>
+                  <tr>
+                    <td>Health Concerns?: </td>
+                    <td><%= @dog.health %></td>
+                  </tr>
 
-                    <tr>
-                      <td>Comments: </td>
-                      <td><%= @dog.dcomments %></td>
-                    </tr>
+                  <tr>
+                    <td>Comments: </td>
+                    <td><%= @dog.dcomments %></td>
+                  </tr>
                   </tbody>
                 </table>
                 <% if session[:user_id] %>
-                <h3>Relatives: </h3>
-                <ul>
-                  <% for pedigree in @dog.pedigrees %>
-                   <li>
-                     <%= label_tag @dog.dname, nil, class: "dog-source" %> is
-                     <%= link_to pedigree.relative.dname, pedigree.relative, class: "dog-destination" %>'s
-                     <%= label_tag pedigree.relation_name, nil, class: "relation-name" %>
-                     <%= link_to "Remove", pedigree, method: :delete %>
-                   </li>
-                  <% end %>
-                </ul>
-                <h4>Add this dog as your dog's relative: </h4>
-                <%= render 'pedigrees/form' %>
+                    <h3>Relatives: </h3>
+                    <ul>
+                      <% for pedigree in @dog.pedigrees %>
+                          <li>
+                            <%= label_tag @dog.dname, nil, class: "dog-source" %> is
+                            <%= link_to pedigree.relative.dname, pedigree.relative, class: "dog-destination" %>'s
+                            <%= label_tag pedigree.relation_name, nil, class: "relation-name" %>
+                            <%= link_to "Remove", pedigree, method: :delete %>
+                          </li>
+                      <% end %>
+                    </ul>
+                    <h4>Add this dog as your dog's relative: </h4>
+                    <%= render 'pedigrees/form' %>
                 <% end %>
               </div>
               <!-- /.relatives -->

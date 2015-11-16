@@ -1,81 +1,118 @@
-<% if @dog.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@dog.errors.count, "error") %> prohibited this dog from being saved:</h2>
-      <ul>
-        <% @dog.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-<% end %>
+<div class="container col-sm-11 col-md-11 col-lg-11" style="
+border-radius: 71px 10px 10px 10px;
+    -moz-border-radius: 71px 10px 10px 10px;
+    -webkit-border-radius: 71px 10px 10px 10px;
+    -webkit-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    border: 0px solid #000000;
+    background-color: white;
+">
+  <section style="padding-bottom: 50px; padding-top: 30px; padding-left: 15px; padding-right: 15px;">
+    <div class="row">
 
-<%= form_for @dog, html: {multipart: true} do |f| %>
-
-  <div class="avatar">
-    <p>
-      <%= image_tag(@dog.avatar_url(:thumb)) if @dog.avatar? %><br>
-      <%= f.file_field :avatar %>
-    </p>
-
-  </div>
-
-
-  <div class="field">
-    <%= f.label :dname, "Dog Name" %><br>
-    <%= f.text_field :dname %>
-  </div>
-  <div class="field">
-    <%= f.label :breed, "Dog Breed" %><br>
-    <%= f.text_field :breed %>
-  </div>
-  <div class="field">
-    <%= f.label :variety, "Breed Variety" %><br>
-    <%= f.text_field :variety %>
-  </div>
-  <div class="field">
-    <%= f.label :dob, "Date of Birth" %><br>
-    <%= f.date_select :dob, order: [:month, :day, :year], start_year: Date.current.year - 20, end_year: Date.current
-    .year %>
-  </div>
-  <div class="field">
-    <%= f.label :height, "Height" %><br>
-    <%= f.text_field :height %>
-  </div>
-  <div class="field">
-    <%= f.label :weight, "Weight (In pounds)" %><br>
-    <%= f.text_field :weight %>
-  </div>
-  <div class="field">
-    <%= f.label :pedinum, "Pedigree Number" %><br>
-    <%= f.text_field :pedinum %>
-  </div>
-  <div class="field">
-    <%= f.label :occupation, "Dog Occupation" %><br>
-    <%= f.text_field :occupation %>
-  </div>
-  <div class="field">
-    <%= f.label :workcert, "Work Certificate Number" %><br>
-    <%= f.text_field :workcert %>
-  </div>
-  <div class="field">
-    <%= f.label :health, "Health Concerns?" %><br>
-    <%= f.text_field :health %>
-  </div>
-  <div class="field">
-    <%= f.label :dcomments, "Additional Comments" %><br>
-    <%= f.text_area :dcomments %>
-  </div>
-
-    <% if session[:user_id] %>
-        <% if @current_user.try(:admin?) %>
-            <div class="field">
-              <%= f.label :user_id, "Dog Owner" %><br>
-              <%= f.collection_select :user_id, User.all, :id, :ufname %>
+      <div class="col-md-12 col-sm-11 col-lg-6">
+        <% if @dog.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@dog.errors.count, "error") %> prohibited this dog from being saved:</h2>
+              <ul>
+                <% @dog.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
             </div>
         <% end %>
-    <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+          <%= form_for @dog, html: {multipart: true} do |f| %>
+
+            <div class="field col-md-9">
+              <h1>Edit <%= @dog.dname %></h1>
+              <div class="center-block col-md-12">
+                  <%= image_tag(@dog.avatar_url(:dog), class: "center-block") if @dog.avatar? %><br>
+              </div>
+              <div class="form-label" style="padding-bottom: 10px;">
+                <%= f.file_field :avatar %>
+              </div>
+              <div class="form-group">
+                <%= f.label :dname, "Dog Name", class: "form-label" %><br>
+                <%= f.text_field :dname, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :breed, "Dog Breed", class: "form-label" %><br>
+                <%= f.text_field :breed, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :variety, "Breed Variety", class: "form-label" %><br>
+                <%= f.text_field :variety, class: "form-control" %>
+              </div>
+          </div>
+      </div>
+
+      <div class="col-md-12 col-sm-11 col-lg-6" style="padding-top: 50px;">
+
+        <div class="form-group">
+          <%= f.label :dob, "Date of Birth", class: "form-label" %><br>
+          <%= f.date_select :dob, {order: [:month, :day, :year], start_year: Date.current.year - 20, end_year: Date.current
+              .year}, {:class => "form-control"} %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :height, "Height", class: "form-label" %><br>
+          <%= f.text_field :height, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :weight, "Weight (In pounds)", class: "form-label" %><br>
+          <%= f.text_field :weight, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :pedinum, "Pedigree Number", class: "form-label" %><br>
+          <%= f.text_field :pedinum, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :occupation, "Dog Occupation", class: "form-label" %><br>
+          <%= f.text_field :occupation, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :workcert, "Work Certificate Number", class: "form-label" %><br>
+          <%= f.text_field :workcert, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :health, "Health Concerns?", class: "form-label" %><br>
+          <%= f.text_field :health, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :dcomments, "Additional Comments", class: "form-label" %><br>
+          <%= f.text_area :dcomments, class: "form-control", rows: 4 %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Update Dog", :class => 'btn btn-success btn-md' %>
+        </div>
+
+        <div class="select-dog-owner">
+          <% if session[:user_id] %>
+              <% if @current_user.try(:admin?) %>
+                  <div class="field">
+                    <%= f.label :user_id, "Dog Owner" %><br>
+                    <%= f.collection_select :user_id, User.all, :id, :ufname %>
+                  </div>
+              <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+    <!-- /.row -->
+    <div class="col-md-12" style="padding-bottom: 15px;">
+      <%= link_to 'Show', @dog, type: "button", class: "btn btn-default btn-lg" %>
+      <% if session[:user_id] %>
+          <% if @current_user.try(:admin?) %>
+              <%= link_to 'Dogs', dogs_path, type: "button", class: "btn btn-default btn-lg" %>
+          <% else %>
+              <%= link_to 'Back', access_dogmenu_path, type: "button", class: "btn btn-default btn-lg" %>
+          <% end %>
+      <% end %>
+    </div>
+  </section>
+</div>
+<!-- /.container -->
