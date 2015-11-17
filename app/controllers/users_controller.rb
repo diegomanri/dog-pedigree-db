@@ -15,12 +15,12 @@ class UsersController < ApplicationController
   def show
     # Show will just display other user's profiles to admins, regular users can only see their own prof.
     @user = User.find(params[:id])
-    unless current_user.admin?
-      unless @user == current_user
-        redirect_to root_url
-        flash[:danger] = "Something went wrong"
-      end
-    end
+    #unless current_user.admin?
+      #unless @user == current_user
+        #redirect_to root_url
+        #flash[:danger] = "Something went wrong"
+      #end
+    #end
     @attended_events = @user.attended_events.paginate(page: params[:page], per_page: 4)
     @created_events = @user.created_events.paginate(page: params[:page], per_page: 4)
   end

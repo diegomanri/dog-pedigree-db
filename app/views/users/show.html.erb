@@ -29,6 +29,10 @@
   <%= @user.username %>
 </p>
 
+<p>
+  <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post' %>
+</p>
+
 <%= link_to 'Edit Profile', edit_user_path(@user) %> |
 <% if session[:user_id] %>
     <% if @current_user.try(:admin?) %>
