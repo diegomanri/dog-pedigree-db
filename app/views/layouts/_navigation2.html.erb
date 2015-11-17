@@ -68,8 +68,8 @@
 
         <% if session[:user_id] %>
           <li class="active">
-            <%= link_to '#' do %>
-                <span class="glyphicon glyphicon-envelope"></span> Messages
+            <%= link_to conversations_path do %>
+                <span class="glyphicon glyphicon-envelope"></span> Mailbox
             <% end %>
           </li>
 
