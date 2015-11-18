@@ -1,31 +1,49 @@
-<div class="ui segment" style="padding-top: 10px;">
-  <h3>Mailbox</h3>
-
-  <div class="ui list">
-    <div class="item">
-      <table class="table">
-        <thead>
-        <tr>Username</tr>
-        </thead>
-        <tbody>
-          <% @conversations.each do |conversation| %>
-          <tr>
-            <td>
-              <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-                  <% if conversation.sender_id == current_user.id %>
-                      <% recipient = User.find(conversation.recipient_id) %>
-                  <% else %>
-                      <% recipient = User.find(conversation.sender_id) %>
+<div class="container col-md-11 col-sm-11" style="
+border-radius: 71px 10px 10px 10px;
+    -moz-border-radius: 71px 10px 10px 10px;
+    -webkit-border-radius: 71px 10px 10px 10px;
+    -webkit-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    border: 0px solid #000000;
+    background-color: white;
+">
+  <section style="padding-bottom: 50px; padding-top: 30px; padding-left: 15px; padding-right: 15px;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="ui segment" style="padding-top: 10px;">
+          <h3>Mailbox</h3>
+          <div class="ui list">
+            <div class="item">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @conversations.each do |conversation| %>
+                  <tr>
+                    <td>
+                      <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+                          <% if conversation.sender_id == current_user.id %>
+                              <% recipient = User.find(conversation.recipient_id) %>
+                          <% else %>
+                              <% recipient = User.find(conversation.sender_id) %>
+                          <% end %>
+                          <%= recipient.username %>
+                      <% end %>
+                    </td>
+                    <td><%= link_to 'View Conversation', conversation_messages_path(conversation) %></td>
+                    <td><%= link_to 'User\'s profile', recipient %></td>
+                  </tr>
                   <% end %>
-                  <%= recipient.username %>
-              <% end %>
-            </td>
-            <td><%= link_to 'View Conversation', conversation_messages_path(conversation) %></td>
-            <td><%= link_to 'User\'s profile', recipient %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 </div>
