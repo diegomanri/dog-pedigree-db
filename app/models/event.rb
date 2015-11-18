@@ -15,6 +15,10 @@ class Event < ActiveRecord::Base
   scope :past_events, -> { where('edate < ?', Date.today)}
 
 
+  def self.search(search)
+    where("ename LIKE ? OR estateprov LIKE ? OR ecity LIKE ? OR ecountry LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+  end
+
   def format_time
     date = Date.today
     self.etime = self.etime.to_datetime.change(day: date.day, month: date.month, year: date.year).to_time

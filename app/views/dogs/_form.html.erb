@@ -39,7 +39,7 @@ border-radius: 71px 10px 10px 10px;
               </div>
               <div class="form-group">
                 <%= f.label :breed, "Dog Breed", class: "form-label" %><br>
-                <%= f.text_field :breed, class: "form-control" %>
+                <%= f.select :breed, options_for_select(dog_breeds) %>
               </div>
               <div class="form-group">
                 <%= f.label :variety, "Breed Variety", class: "form-label" %><br>

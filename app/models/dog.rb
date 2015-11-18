@@ -22,6 +22,10 @@ class Dog < ActiveRecord::Base
     "#{user_id} #{dname} #{breed}"
   end
 
+  def self.search(search)
+    where("dname LIKE ? OR breed LIKE ?", "%#{search}%", "%#{search}%")
+  end
+
   # do not allow pictures greater than 5 Mb.
   def picture_size
     if avatar.size > 5.megabytes

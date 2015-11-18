@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   resources :dogs
   resources :events
   resources :users
@@ -37,6 +38,8 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 
   get 'admin', :to => "access#admin"
+  get 'dog-search', :to => "dogs#dog_search"
+  get 'event-search', :to => "events#event_search"
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

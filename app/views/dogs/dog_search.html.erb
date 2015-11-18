@@ -1,0 +1,23 @@
+<div class="col-md-11" style="padding-top: 40px;">
+  <%= form_tag(dog_search_path, :method => "get", id: "search-form") do %>
+      <div class="input-group col-md-5">
+        <%= text_field_tag :search, params[:search], placeholder: "Search by dog name or breed", size: 100,
+                                    class: "form-control" %>
+
+        <div class="input-group-btn">
+
+          <%= button_tag(type: "submit", class: "btn btn-default") do %>
+              <i class="glyphicon glyphicon-search"></i>
+          <% end %>
+        </div>
+      </div>
+
+  <% end %>
+
+  <% if @dogs.present? %>
+
+      <%= render 'dogs/dog' %>
+  <% else %>
+      <p>There are no dogs containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
+</div>

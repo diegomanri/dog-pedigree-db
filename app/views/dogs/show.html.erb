@@ -69,6 +69,11 @@
                     <td>Comments: </td>
                     <td><%= @dog.dcomments %></td>
                   </tr>
+
+                  <tr>
+                    <td>Dog Owner: </td>
+                    <td><%= link_to @dog.user.username, @dog.user %></td>
+                  </tr>
                   </tbody>
                 </table>
                 <% if session[:user_id] %>

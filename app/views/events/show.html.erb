@@ -54,7 +54,7 @@
           </div>
 
           <p>
-            Event by: <%= link_to @event.creator.ufname, user_path(@event.creator) %>
+            Event by: <%= link_to @event.creator.username, user_path(@event.creator) %>
           </p>
 
           <% if session[:user_id] %>

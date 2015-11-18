@@ -1,0 +1,34 @@
+<h2>Registered Events</h2>
+
+<table class="table table-hover table-striped">
+  <thead>
+  <tr>
+    <th>Event Name</th>
+    <th>Date</th>
+    <th>Time (24hr)</th>
+    <th>State</th>
+    <th>city</th>
+    <th>Zip</th>
+    <th>Country</th>
+    <th>Event Creator</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @events.each do |event| %>
+      <tr>
+        <td><%= event.ename %></td>
+        <td><%= event.edate.try(:strftime, ("%m/%d/%Y")) %></td>
+        <td><%= event.etime.strftime("%H:%M ") %></td>
+        <td><%= event.estateprov %></td>
+        <td><%= event.ecity %></td>
+        <td><%= event.ezippostal %></td>
+        <td><%= event.ecountry %></td>
+        <td><%= link_to event.creator.username, event.creator %></td>
+        <td><%= link_to 'View Event', event %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= will_paginate @events %>

@@ -1,6 +1,6 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
-  before_action :confirm_logged_in, except: :show
+  before_action :confirm_logged_in, except: [:show, :dog_search]
   before_filter :admin_only, only: :index
   before_filter :dog_owner?, only: [:edit, :update, :destroy]
   layout 'authenticated'
@@ -25,6 +25,15 @@ class DogsController < ApplicationController
 
   # GET /dogs/1/edit
   def edit
+  end
+
+  def dog_search
+    @dogs = Dog.all
+    if params[:search]
+      @dogs = Dog.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+    else
+      @dogs = Dog.all.order('created_at DESC').paginate(page: params[:page], per_page: 15)
+    end
   end
 
   # This will be used for users to only be able to edit, update and delete their own dogs.

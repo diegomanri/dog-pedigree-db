@@ -66,6 +66,15 @@ class EventsController < ApplicationController
     end
   end
 
+  def event_search
+    @events = Event.all
+    if params[:search]
+      @events = Event.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+    else
+      @events = Event.all.order('created_at DESC').paginate(page: params[:page], per_page: 15)
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

@@ -20,10 +20,10 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right" id="home-links">
         <li>
-          <%=link_to 'Search Dogs', '#' %>
+          <%=link_to 'Search Dogs', :controller => :dogs, :action => :dog_search %>
         </li>
         <li>
-          <%= link_to 'Search Events', public_event_search_path %>
+          <%= link_to 'Search Events', :controller => :events, :action => :event_search %>
         </li>
         <li>
           <%= link_to 'About', '#' %>
