@@ -17,27 +17,25 @@ border-radius: 71px 10px 10px 10px;
             <div class="item">
               <table class="table">
                 <thead>
-                  <tr>
-                    <th>Username</th>
-                  </tr>
+                <tr>
+                  <th>Username</th>
+                </tr>
                 </thead>
                 <tbody>
-                  <% @conversations.each do |conversation| %>
-                  <tr>
-                    <td>
-                      <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-                          <% if conversation.sender_id == current_user.id %>
-                              <% recipient = User.find(conversation.recipient_id) %>
-                          <% else %>
-                              <% recipient = User.find(conversation.sender_id) %>
-                          <% end %>
-                          <%= recipient.username %>
-                      <% end %>
-                    </td>
-                    <td><%= link_to 'View Conversation', conversation_messages_path(conversation) %></td>
-                    <td><%= link_to 'User\'s profile', recipient %></td>
-                  </tr>
-                  <% end %>
+                <% @conversations.each do |conversation| %>
+                    <tr>
+                        <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+                            <% if conversation.sender_id == current_user.id %>
+                                <% recipient = User.find(conversation.recipient_id) %>
+                            <% else %>
+                                <% recipient = User.find(conversation.sender_id) %>
+                            <% end %>
+                            <td><%= recipient.username %></td>
+                            <td><%= link_to 'View Conversation', conversation_messages_path(conversation) %></td>
+                            <td><%= link_to 'User\'s profile', recipient %></td>
+                        <% end %>
+                    </tr>
+                <% end %>
                 </tbody>
               </table>
             </div>

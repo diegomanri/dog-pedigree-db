@@ -2,7 +2,9 @@ class MessagesController < ApplicationController
 
   layout 'authenticated'
   before_action do
-    @conversation = Conversation.find(params[:conversation_id])
+    #@conversation = Conversation.find(params[:conversation_id])
+    @conversation = Conversation.where("(sender_id = ? OR recipient_id =?) AND id = ?", current_user.id, current_user.id,
+                                       params[:conversation_id]).first
   end
 
   def index
