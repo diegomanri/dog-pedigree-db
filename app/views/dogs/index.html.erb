@@ -2,11 +2,13 @@
 
 <h1>Listing Dogs</h1>
 
+<div class="tableScroll col-md-11 col-sm-11 col-lg-11">
 <table class="table table-hover table-striped">
   <thead>
     <tr>
       <th>Dog name</th>
       <th>Breed</th>
+      <th>Sex</th>
       <th>Variety</th>
       <th>DOB</th>
       <th>Height</th>
@@ -25,6 +27,7 @@
       <tr>
         <td><%= dog.dname %></td>
         <td><%= dog.breed %></td>
+        <td><%= dog.sex %></td>
         <td><%= dog.variety %></td>
         <td><%= dog.dob %></td>
         <td><%= dog.height %></td>
@@ -41,9 +44,13 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <p>
   <%= will_paginate @dogs %>
 </p>
+
+<div class="col-md-12">
 <%= link_to 'New Dog', new_dog_path %> |
 <%= link_to 'Admin Menu', admin_path %>
+</div>

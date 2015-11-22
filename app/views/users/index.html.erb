@@ -2,7 +2,7 @@
 
 <h1>Registered Users</h1>
 
-
+<div class="tableScroll col-md-11 col-sm-11 col-lg-11">
 <table class="table table-hover table-striped">
   <thead>
     <tr>
@@ -34,9 +34,12 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <p>
   <%= will_paginate @users %>
 </p>
 
+<div class="col-md-12">
 <%= link_to 'New User', new_user_path %>
+</div>
