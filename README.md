@@ -1,3 +1,8 @@
+# Notes 2024
+
+This is an old Ruby on Rails school project. Not to be used in production.
+
+
 == README
 
 This README would normally document whatever steps are necessary to get the
